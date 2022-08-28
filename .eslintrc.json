@@ -1,0 +1,41 @@
+{
+    "env": {
+        "browser": true,
+        "es2021": true
+    },
+    "extends": [
+        "plugin:react/recommended",
+        "plugin:react-hooks/recommended",
+        "standard-with-typescript",
+        "plugin:prettier/recommended"
+    ],
+    "overrides": [
+    ],
+    "parserOptions": {
+        "ecmaVersion": "latest",
+        "sourceType": "module",
+        "ecmaFeatures": {
+            "jsx": true
+        },
+        "project": "tsconfig.json"
+    },
+    "plugins": [
+        "react"
+    ],
+    "rules": {
+        "prettier/prettier": [
+            "error",
+            {
+                // Prettier config
+                "endOfLine": "lf",
+                "semi": true,
+                "singleQuote": false,
+                "tabWidth": 2,
+                "trailingComma": "es5"
+            }
+        ],
+        "react-hooks/exhaustive-deps": "off" 
+
+    },
+    "ignorePatterns": ["src/main.tsx", "src/vite-env.d.ts"]
+}
