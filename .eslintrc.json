@@ -34,5 +34,6 @@
                 "trailingComma": "es5"
             }
         ]
-    }
+    },
+    "ignorePatterns": ["src/main.tsx", "src/vite-env.d.ts"]
 }

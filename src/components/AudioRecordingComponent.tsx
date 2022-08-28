@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect, ReactElement } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faMicrophone,
@@ -20,7 +20,9 @@ interface Props {
   onRecordingComplete?: (blob: Blob) => void;
 }
 
-const AudioRecorder = ({ onRecordingComplete }: Props) => {
+const AudioRecorder: (props: Props) => ReactElement = ({
+  onRecordingComplete,
+}: Props) => {
   const {
     startRecording,
     stopRecording,
@@ -32,7 +34,9 @@ const AudioRecorder = ({ onRecordingComplete }: Props) => {
   } = useAudioRecorder();
   const [shouldSave, setShouldSave] = useState(false);
 
-  const stopAudioRecorder = (save: boolean = true) => {
+  const stopAudioRecorder: (save?: boolean) => void = (
+    save: boolean = true
+  ) => {
     setShouldSave(save);
     stopRecording();
   };
