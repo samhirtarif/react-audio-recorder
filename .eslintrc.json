@@ -33,7 +33,9 @@
                 "tabWidth": 2,
                 "trailingComma": "es5"
             }
-        ]
+        ],
+        "react-hooks/exhaustive-deps": "off" 
+
     },
     "ignorePatterns": ["src/main.tsx", "src/vite-env.d.ts"]
 }
