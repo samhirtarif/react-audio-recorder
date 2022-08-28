@@ -1,0 +1,45 @@
+* {
+    box-sizing: border-box;
+}
+
+div {
+    margin: 0;
+}
+
+.audio-recorder {
+    border: 1px solid gray;
+    border-radius: 20px;
+
+    width: 38px;
+    background-color: white;
+    display: flex;
+    align-items: center;
+
+    padding: 10px 12px;
+    transition: all 0.2s ease-in;
+}
+
+.audio-recorder-mic {
+    cursor: pointer;
+    
+}
+
+.audio-recorder-timer {
+    margin-left: 10px;
+    flex-grow: 1;
+}
+
+.audio-recorder-options {
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+.recording {
+    border-radius: 12px;
+    width: 300px;
+    transition: all 0.2s ease-out;
+}
+
+.display-none {
+    display: none;
+}
