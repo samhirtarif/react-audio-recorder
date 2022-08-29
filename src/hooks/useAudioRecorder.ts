@@ -27,7 +27,7 @@ const useAudioRecorder: () => {
         setMediaRecorder(recorder);
         recorder.start();
         const interval = setInterval(() => {
-          if (recorder?.state === "recording") {
+          if (!isPaused) {
             setRecordingTime((prevTime) => [
               prevTime[1] === 59 ? prevTime[0] + 1 : prevTime[0],
               prevTime[1] === 59 ? 0 : prevTime[1] + 1,
