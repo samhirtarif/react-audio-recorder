@@ -16,7 +16,7 @@ const useAudioRecorder: () => {
   const [timerInterval, setTimerInterval] = useState<NodeJS.Timer>();
   const [recordingBlob, setRecordingBlob] = useState<Blob>();
 
-  const _startTimer = () => {
+  const _startTimer: () => void = () => {
     const interval = setInterval(() => {
       setRecordingTime((prevTime) => [
         prevTime[1] === 59 ? prevTime[0] + 1 : prevTime[0],
@@ -24,15 +24,15 @@ const useAudioRecorder: () => {
       ]);
     }, 1000);
     setTimerInterval(interval);
-  }
+  };
 
-  const _stopTimer = () => {
-    timerInterval && clearInterval(timerInterval);
+  const _stopTimer: () => void = () => {
+    timerInterval != null && clearInterval(timerInterval);
     setTimerInterval(undefined);
-  }
+  };
 
   const startRecording: () => void = useCallback(() => {
-    if (timerInterval) return;
+    if (timerInterval != null) return;
 
     navigator.mediaDevices
       .getUserMedia({ audio: true })
@@ -43,7 +43,7 @@ const useAudioRecorder: () => {
         recorder.start();
         _startTimer();
 
-        recorder.addEventListener("dataavailable", event => {
+        recorder.addEventListener("dataavailable", (event) => {
           setRecordingBlob(event.data);
         });
       })
@@ -52,7 +52,7 @@ const useAudioRecorder: () => {
 
   const stopRecording: () => void = () => {
     mediaRecorder?.stop();
-    _stopTimer()
+    _stopTimer();
     setMediaRecorder(null);
     setRecordingTime([0, 0]);
     setIsRecording(false);
@@ -66,7 +66,7 @@ const useAudioRecorder: () => {
       _startTimer();
     } else {
       setIsPaused(true);
-      _stopTimer()
+      _stopTimer();
       mediaRecorder?.pause();
     }
   };

@@ -48,7 +48,10 @@ const AudioRecorder: (props: Props) => ReactElement = ({
   }, [recordingBlob]);
 
   return (
-    <div className={`audio-recorder ${isRecording ? "recording" : ""}`} data-testid="audio_recorder">
+    <div
+      className={`audio-recorder ${isRecording ? "recording" : ""}`}
+      data-testid="audio_recorder"
+    >
       <FontAwesomeIcon
         icon={isRecording ? faSave : faMicrophone}
         className="audio-recorder-mic"
@@ -56,7 +59,8 @@ const AudioRecorder: (props: Props) => ReactElement = ({
         data-testid="ar_mic"
       />
       <span
-        className={`audio-recorder-timer ${!isRecording ? "display-none" : ""}`} data-testid="ar_timer"
+        className={`audio-recorder-timer ${!isRecording ? "display-none" : ""}`}
+        data-testid="ar_timer"
       >
         {recordingTime[0]}:
         {recordingTime[1] >= 10 ? recordingTime[1] : `0${recordingTime[1]}`}

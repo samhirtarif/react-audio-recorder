@@ -46,6 +46,7 @@ describe("Test AudioRecorder", () => {
     expect(screen.getByTestId("audio_recorder")).toHaveClass("audio-recorder")
   });
 
+  
   test("AudioRecorder starts / cancels properly", async () => {
     const user = userEvent.setup()
     render(<AudioRecorder />)
@@ -59,6 +60,7 @@ describe("Test AudioRecorder", () => {
 
     expect(audioRecorder.classList.contains("recording")).toBeFalsy()
   });
+
 
   test("AudioRecorder starts / save properly", async () => {
     const user = userEvent.setup()
@@ -74,8 +76,8 @@ describe("Test AudioRecorder", () => {
     expect(onRecordingComplete).toHaveBeenCalled()
   });
 
+
   test("AudioRecorder starts / pause / save properly", async () => {
-    
     const user = userEvent.setup()
     const onRecordingComplete = vi.fn()
     render(<AudioRecorder onRecordingComplete={onRecordingComplete} />)
@@ -100,8 +102,8 @@ describe("Test AudioRecorder", () => {
     }, 1000))
   });
 
+
   test("AudioRecorder timer works properly", async () => {
-    
     const user = userEvent.setup()
     const onRecordingComplete = vi.fn()
     render(<AudioRecorder onRecordingComplete={onRecordingComplete} />)
