@@ -7,21 +7,18 @@ const useAudioRecorder: () => {
   recordingBlob?: Blob;
   isRecording: boolean;
   isPaused: boolean;
-  recordingTime: number[];
+  recordingTime: number;
 } = () => {
   const [isRecording, setIsRecording] = useState(false);
   const [isPaused, setIsPaused] = useState(false);
-  const [recordingTime, setRecordingTime] = useState([0, 0]);
+  const [recordingTime, setRecordingTime] = useState(0);
   const [mediaRecorder, setMediaRecorder] = useState<MediaRecorder | null>();
   const [timerInterval, setTimerInterval] = useState<NodeJS.Timer>();
   const [recordingBlob, setRecordingBlob] = useState<Blob>();
 
   const _startTimer: () => void = () => {
     const interval = setInterval(() => {
-      setRecordingTime((prevTime) => [
-        prevTime[1] === 59 ? prevTime[0] + 1 : prevTime[0],
-        prevTime[1] === 59 ? 0 : prevTime[1] + 1,
-      ]);
+      setRecordingTime(time => time + 1);
     }, 1000);
     setTimerInterval(interval);
   };
@@ -54,7 +51,7 @@ const useAudioRecorder: () => {
     mediaRecorder?.stop();
     _stopTimer();
     setMediaRecorder(null);
-    setRecordingTime([0, 0]);
+    setRecordingTime(0);
     setIsRecording(false);
     setIsPaused(false);
   };
