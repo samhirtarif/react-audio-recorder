@@ -62,8 +62,8 @@ const AudioRecorder: (props: Props) => ReactElement = ({
         className={`audio-recorder-timer ${!isRecording ? "display-none" : ""}`}
         data-testid="ar_timer"
       >
-        {recordingTime[0]}:
-        {recordingTime[1] >= 10 ? recordingTime[1] : `0${recordingTime[1]}`}
+        {Math.floor(recordingTime / 60)}:
+        {String(recordingTime % 60).padStart(2, "0")}
       </span>
       <FontAwesomeIcon
         icon={isPaused ? faPlay : faPause}
