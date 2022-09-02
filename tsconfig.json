@@ -16,6 +16,6 @@
     "noEmit": true,
     "jsx": "react-jsx"
   },
-  "include": ["src"],
+  "include": ["src", "tests/AudioRecordingComponent.test.tsx"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

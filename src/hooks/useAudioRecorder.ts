@@ -13,40 +13,46 @@ const useAudioRecorder: () => {
   const [isPaused, setIsPaused] = useState(false);
   const [recordingTime, setRecordingTime] = useState([0, 0]);
   const [mediaRecorder, setMediaRecorder] = useState<MediaRecorder | null>();
-  const [timerInterval, setTimerInterval] = useState<number>(0);
+  const [timerInterval, setTimerInterval] = useState<NodeJS.Timer>();
   const [recordingBlob, setRecordingBlob] = useState<Blob>();
 
-  const startRecording: () => void = useCallback(() => {
-    if (timerInterval > 0) return;
+  const _startTimer: () => void = () => {
+    const interval = setInterval(() => {
+      setRecordingTime((prevTime) => [
+        prevTime[1] === 59 ? prevTime[0] + 1 : prevTime[0],
+        prevTime[1] === 59 ? 0 : prevTime[1] + 1,
+      ]);
+    }, 1000);
+    setTimerInterval(interval);
+  };
 
-    setIsRecording(true);
+  const _stopTimer: () => void = () => {
+    timerInterval != null && clearInterval(timerInterval);
+    setTimerInterval(undefined);
+  };
+
+  const startRecording: () => void = useCallback(() => {
+    if (timerInterval != null) return;
+
     navigator.mediaDevices
       .getUserMedia({ audio: true })
       .then((stream) => {
+        setIsRecording(true);
         const recorder: MediaRecorder = new MediaRecorder(stream);
         setMediaRecorder(recorder);
         recorder.start();
-        const interval = setInterval(() => {
-          if (!isPaused) {
-            setRecordingTime((prevTime) => [
-              prevTime[1] === 59 ? prevTime[0] + 1 : prevTime[0],
-              prevTime[1] === 59 ? 0 : prevTime[1] + 1,
-            ]);
-          }
-        }, 1000);
-        setTimerInterval(interval);
+        _startTimer();
 
-        recorder.ondataavailable = (event) => {
+        recorder.addEventListener("dataavailable", (event) => {
           setRecordingBlob(event.data);
-        };
+        });
       })
-      .catch(() => console.log("Could not get user media"));
+      .catch((err) => console.log(err));
   }, [timerInterval]);
 
   const stopRecording: () => void = () => {
     mediaRecorder?.stop();
-    timerInterval > 0 && clearInterval(timerInterval);
-    setTimerInterval(0);
+    _stopTimer();
     setMediaRecorder(null);
     setRecordingTime([0, 0]);
     setIsRecording(false);
@@ -57,8 +63,10 @@ const useAudioRecorder: () => {
     if (isPaused) {
       setIsPaused(false);
       mediaRecorder?.resume();
+      _startTimer();
     } else {
       setIsPaused(true);
+      _stopTimer();
       mediaRecorder?.pause();
     }
   };
