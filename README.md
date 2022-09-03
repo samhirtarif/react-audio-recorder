@@ -32,8 +32,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
   </React.StrictMode>
 );
 ```
-
-
+---
 ### **useAudioRecorder** hook
 
 If you prefer to build up your own UI but take advantage of the implementation provided by this package, you can use this hook instead of the component
@@ -79,4 +78,35 @@ Number of seconds that the recording has gone on. This is updated every second
     isPaused,
     recordingTime,
   } = useAudioRecorder();
+```
+---
+### Combine the **`useAudioRecorder`** hook and the **`AudioRecorder`** component
+This is for scenarios where you would wish to control the `AudioRecorder` component from outside the component. You can call the `useAudioRecorder` and pass the object it returns to the **`recorderControls`** of the `AudioRecorder`. This would enable you to control the `AudioRecorder` component from outside the component as well
+
+#### Sample usage
+
+```js
+import AudioRecorder from "./components/AudioRecordingComponent";
+import useAudioRecorder from "./hooks/useAudioRecorder";
+
+const ExampleComponent = () => {
+  const recorderControls = useAudioRecorder()
+  const addAudioElement = (blob) => {
+    const url = URL.createObjectURL(blob);
+    const audio = document.createElement("audio");
+    audio.src = url;
+    audio.controls = true;
+    document.body.appendChild(audio);
+  };
+
+  return (
+    <div>
+      <AudioRecorder 
+        onRecordingComplete={(blob) => addAudioElement(blob)}
+        recorderControls={recorderControls}
+      />
+      <button onClick={recorderControls.stopRecording}>Stop recording</button>
+    </div>
+  )
+}
 ```
