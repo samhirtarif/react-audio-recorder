@@ -1,15 +1,12 @@
 import React, { useState, useEffect, ReactElement } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faMicrophone,
-  faTrash,
-  faPause,
-  faSave,
-  faPlay,
-} from "@fortawesome/free-solid-svg-icons";
 import { Props } from "./interfaces";
 import useAudioRecorder from "../hooks/useAudioRecorder";
 
+import micSVG from "../icons/mic.svg"
+import pauseSVG from "../icons/pause.svg"
+import resumeSVG from "../icons/play.svg"
+import saveSVG from "../icons/save.svg"
+import discardSVG from "../icons/stop.svg"
 import "../styles/audio-recorder.css";
 
 /**
@@ -37,7 +34,6 @@ const AudioRecorder: (props: Props) => ReactElement = ({
     // eslint-disable-next-line react-hooks/rules-of-hooks
   } = recorderControls ?? useAudioRecorder();
   const [shouldSave, setShouldSave] = useState(false);
-
   const stopAudioRecorder: (save?: boolean) => void = (
     save: boolean = true
   ) => {
@@ -50,7 +46,6 @@ const AudioRecorder: (props: Props) => ReactElement = ({
       onRecordingComplete(recordingBlob);
     }
   }, [recordingBlob]);
-
   return (
     <div
       className={`audio-recorder ${isRecording ? "recording" : ""} ${
@@ -58,8 +53,8 @@ const AudioRecorder: (props: Props) => ReactElement = ({
       }`}
       data-testid="audio_recorder"
     >
-      <FontAwesomeIcon
-        icon={isRecording ? faSave : faMicrophone}
+      <img
+        src={isRecording ? saveSVG : micSVG}
         className={`audio-recorder-mic ${
           classes?.AudioRecorderStartSaveClass ?? ""
         }`}
@@ -84,8 +79,8 @@ const AudioRecorder: (props: Props) => ReactElement = ({
         <span className="audio-recorder-status-dot"></span>
         Recording
       </span>
-      <FontAwesomeIcon
-        icon={isPaused ? faPlay : faPause}
+      <img
+        src={isPaused ? resumeSVG : pauseSVG}
         className={`audio-recorder-options ${
           !isRecording ? "display-none" : ""
         } ${classes?.AudioRecorderPauseResumeClass ?? ""}`}
@@ -93,8 +88,8 @@ const AudioRecorder: (props: Props) => ReactElement = ({
         title={isPaused ? "Resume recording" : "Pause recording"}
         data-testid="ar_pause"
       />
-      <FontAwesomeIcon
-        icon={faTrash}
+      <img
+        src={discardSVG}
         className={`audio-recorder-options ${
           !isRecording ? "display-none" : ""
         } ${classes?.AudioRecorderDiscardClass ?? ""}`}
