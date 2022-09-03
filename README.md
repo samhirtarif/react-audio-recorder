@@ -1,5 +1,5 @@
 
-# **react-audio-recorder**
+# **react-audio-voice-recorder**
 An audio recording helper for React. Provides a component and a hook to help with audio recording.
 
 ## Installation
