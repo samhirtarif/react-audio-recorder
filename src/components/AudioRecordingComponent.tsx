@@ -21,10 +21,20 @@ interface Props {
   /**
    * Allows calling of hook outside this component. The controls returned by the hook can then be passed to the component using this prop.
    * This allows for use of hook methods and state outside this component
+   * @sample_usage https://github.com/samhirtarif/react-audio-recorder#combine-the-useaudiorecorder-hook-and-the-audiorecorder-component
    **/
   recorderControls?: recorderControls;
 }
 
+/**
+ * Usage: https://github.com/samhirtarif/react-audio-recorder#audiorecorder-component
+ *
+ *
+ * @param onRecordingComplete Method that gets called when save recording option is clicked
+ * @param recorderControls Externally initilize hook and pass the returned object to this param, this gives your control over the component from outside the component.
+ * https://github.com/samhirtarif/react-audio-recorder#combine-the-useaudiorecorder-hook-and-the-audiorecorder-component
+ *
+ */
 const AudioRecorder: (props: Props) => ReactElement = ({
   onRecordingComplete,
   recorderControls,

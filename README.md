@@ -11,7 +11,7 @@ npm install react-audio-recorder
 
 ### **AudioRecorder** Component
 
-You can use an out-of-the-box component that takes `onRecordingComplete` function as a prop and calls it when you save the recording
+You can use an out-of-the-box component that takes `onRecordingComplete` method as a prop and calls it when you save the recording
 
 ```js
 import React from "react";
@@ -40,7 +40,7 @@ If you prefer to build up your own UI but take advantage of the implementation p
 The hook returns the following:
 
 #### **`startRecording`**
-Calling this function would result in the recording to start. Sets `isRecording` to `true`
+Calling this method would result in the recording to start. Sets `isRecording` to `true`
 
 
 #### **`stopRecording`**
@@ -48,7 +48,7 @@ This results in a recording in progress being stopped and the resulting audio be
 
 
 #### **`togglePauseResume`**
-Calling this function would pause the recording if it is currently running or resume if it is paused. Toggles the value `isPaused`
+Calling this method would pause the recording if it is currently running or resume if it is paused. Toggles the value `isPaused`
 
 
 #### **`recordingBlob`**
