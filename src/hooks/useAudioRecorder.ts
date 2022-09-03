@@ -1,6 +1,6 @@
 import { useState, useCallback } from "react";
 
-const useAudioRecorder: () => {
+export interface recorderControls {
   startRecording: () => void;
   stopRecording: () => void;
   togglePauseResume: () => void;
@@ -8,7 +8,9 @@ const useAudioRecorder: () => {
   isRecording: boolean;
   isPaused: boolean;
   recordingTime: number;
-} = () => {
+}
+
+const useAudioRecorder: () => recorderControls = () => {
   const [isRecording, setIsRecording] = useState(false);
   const [isPaused, setIsPaused] = useState(false);
   const [recordingTime, setRecordingTime] = useState(0);

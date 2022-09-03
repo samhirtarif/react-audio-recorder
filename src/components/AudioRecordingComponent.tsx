@@ -8,7 +8,7 @@ import {
   faPlay,
 } from "@fortawesome/free-solid-svg-icons";
 
-import useAudioRecorder from "../hooks/useAudioRecorder";
+import useAudioRecorder, { recorderControls } from "../hooks/useAudioRecorder";
 
 import "../styles/audio-recorder.css";
 
@@ -18,10 +18,16 @@ interface Props {
    * In case the recording is cancelled, the blob is discarded.
    **/
   onRecordingComplete?: (blob: Blob) => void;
+  /**
+   * Allows calling of hook outside this component. The controls returned by the hook can then be passed to the component using this prop.
+   * This allows for use of hook methods and state outside this component
+   **/
+  recorderControls?: recorderControls;
 }
 
 const AudioRecorder: (props: Props) => ReactElement = ({
   onRecordingComplete,
+  recorderControls,
 }: Props) => {
   const {
     startRecording,
@@ -31,7 +37,8 @@ const AudioRecorder: (props: Props) => ReactElement = ({
     isRecording,
     isPaused,
     recordingTime,
-  } = useAudioRecorder();
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+  } = recorderControls ?? useAudioRecorder();
   const [shouldSave, setShouldSave] = useState(false);
 
   const stopAudioRecorder: (save?: boolean) => void = (
