@@ -2,7 +2,7 @@ import React, { useState, useEffect, ReactElement } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faMicrophone,
-  faClose,
+  faTrash,
   faPause,
   faSave,
   faPlay,
@@ -65,6 +65,14 @@ const AudioRecorder: (props: Props) => ReactElement = ({
         {Math.floor(recordingTime / 60)}:
         {String(recordingTime % 60).padStart(2, "0")}
       </span>
+      <span
+        className={`audio-recorder-status ${
+          !isRecording ? "display-none" : ""
+        }`}
+      >
+        <span className="audio-recorder-status-dot"></span>
+        Recording
+      </span>
       <FontAwesomeIcon
         icon={isPaused ? faPlay : faPause}
         className={`audio-recorder-options ${
@@ -74,7 +82,7 @@ const AudioRecorder: (props: Props) => ReactElement = ({
         data-testid="ar_pause"
       />
       <FontAwesomeIcon
-        icon={faClose}
+        icon={faTrash}
         className={`audio-recorder-options ${
           !isRecording ? "display-none" : ""
         }`}

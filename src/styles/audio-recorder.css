@@ -1,32 +1,44 @@
-* {
-    box-sizing: border-box;
-}
-
-div {
-    margin: 0;
-}
-
 .audio-recorder {
-    border: 1px solid gray;
+    background-color: rgb(235, 235, 235);
+    /* border: 1px solid gray; */
+    box-shadow: 0px 2px 5px 0px rgb(190, 190, 190);
     border-radius: 20px;
+    box-sizing: border-box;
 
-    width: 38px;
-    background-color: white;
+    width: 40px;
     display: flex;
     align-items: center;
 
-    padding: 10px 12px;
+    padding: 12px 14px;
     transition: all 0.2s ease-in;
 }
 
 .audio-recorder-mic {
     cursor: pointer;
-    
 }
 
-.audio-recorder-timer {
+.audio-recorder-timer, .audio-recorder-status {
     margin-left: 10px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 14px;
+}
+
+.audio-recorder-status {
+    margin-left: 15px;
+    display: flex;
+    align-items: baseline;
     flex-grow: 1;
+    animation-name: fading-ar-status;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+}
+
+.audio-recorder-status-dot {
+    background-color: rgb(221, 0, 0);
+    border-radius: 50%;
+    height: 10px;
+    width: 10px;
+    margin-right: 5px;
 }
 
 .audio-recorder-options {
@@ -43,3 +55,9 @@ div {
 .display-none {
     display: none;
 }
+
+@keyframes fading-ar-status {
+    0%   {opacity: 1;}
+    50%  {opacity: 0;}
+    100% {opacity: 1;}
+  }
