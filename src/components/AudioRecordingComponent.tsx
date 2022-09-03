@@ -2,11 +2,11 @@ import React, { useState, useEffect, ReactElement } from "react";
 import { Props } from "./interfaces";
 import useAudioRecorder from "../hooks/useAudioRecorder";
 
-import micSVG from "../icons/mic.svg"
-import pauseSVG from "../icons/pause.svg"
-import resumeSVG from "../icons/play.svg"
-import saveSVG from "../icons/save.svg"
-import discardSVG from "../icons/stop.svg"
+import micSVG from "../icons/mic.svg";
+import pauseSVG from "../icons/pause.svg";
+import resumeSVG from "../icons/play.svg";
+import saveSVG from "../icons/save.svg";
+import discardSVG from "../icons/stop.svg";
 import "../styles/audio-recorder.css";
 
 /**
