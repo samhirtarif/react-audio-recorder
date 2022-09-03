@@ -26,7 +26,7 @@ interface StyleProps {
    **/
   AudioRecorderDiscardClass?: string;
 }
-  
+
 export interface Props {
   /**
    * This gets called when the save button is clicked.
