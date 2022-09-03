@@ -4,7 +4,7 @@ An audio recording helper for React. Provides a component and a hook to help wit
 
 ## Installation
 ```sh
-npm install react-audio-recorder
+npm install react-audio-voice-recorder
 ```
 
 ## Usage
