@@ -82,5 +82,9 @@
     "vite-plugin-css-injected-by-js": "^2.0.4",
     "vite-plugin-dts": "^1.4.1",
     "vitest": "^0.22.1"
+  },
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
   }
 }
