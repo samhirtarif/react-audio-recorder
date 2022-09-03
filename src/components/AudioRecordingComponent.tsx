@@ -7,24 +7,10 @@ import {
   faSave,
   faPlay,
 } from "@fortawesome/free-solid-svg-icons";
-
-import useAudioRecorder, { recorderControls } from "../hooks/useAudioRecorder";
+import { Props } from "./interfaces";
+import useAudioRecorder from "../hooks/useAudioRecorder";
 
 import "../styles/audio-recorder.css";
-
-interface Props {
-  /**
-   * This gets called when the save button is clicked.
-   * In case the recording is cancelled, the blob is discarded.
-   **/
-  onRecordingComplete?: (blob: Blob) => void;
-  /**
-   * Allows calling of hook outside this component. The controls returned by the hook can then be passed to the component using this prop.
-   * This allows for use of hook methods and state outside this component
-   * @sample_usage https://github.com/samhirtarif/react-audio-recorder#combine-the-useaudiorecorder-hook-and-the-audiorecorder-component
-   **/
-  recorderControls?: recorderControls;
-}
 
 /**
  * Usage: https://github.com/samhirtarif/react-audio-recorder#audiorecorder-component
@@ -38,6 +24,7 @@ interface Props {
 const AudioRecorder: (props: Props) => ReactElement = ({
   onRecordingComplete,
   recorderControls,
+  classes,
 }: Props) => {
   const {
     startRecording,
@@ -66,18 +53,24 @@ const AudioRecorder: (props: Props) => ReactElement = ({
 
   return (
     <div
-      className={`audio-recorder ${isRecording ? "recording" : ""}`}
+      className={`audio-recorder ${isRecording ? "recording" : ""} ${
+        classes?.AudioRecorderClass ?? ""
+      }`}
       data-testid="audio_recorder"
     >
       <FontAwesomeIcon
         icon={isRecording ? faSave : faMicrophone}
-        className="audio-recorder-mic"
+        className={`audio-recorder-mic ${
+          classes?.AudioRecorderStartSaveClass ?? ""
+        }`}
         onClick={isRecording ? () => stopAudioRecorder() : startRecording}
         data-testid="ar_mic"
         title={isRecording ? "Save recording" : "Start recording"}
       />
       <span
-        className={`audio-recorder-timer ${!isRecording ? "display-none" : ""}`}
+        className={`audio-recorder-timer ${
+          !isRecording ? "display-none" : ""
+        } ${classes?.AudioRecorderTimerClass ?? ""}`}
         data-testid="ar_timer"
       >
         {Math.floor(recordingTime / 60)}:
@@ -86,7 +79,7 @@ const AudioRecorder: (props: Props) => ReactElement = ({
       <span
         className={`audio-recorder-status ${
           !isRecording ? "display-none" : ""
-        }`}
+        } ${classes?.AudioRecorderStatusClass ?? ""}`}
       >
         <span className="audio-recorder-status-dot"></span>
         Recording
@@ -95,7 +88,7 @@ const AudioRecorder: (props: Props) => ReactElement = ({
         icon={isPaused ? faPlay : faPause}
         className={`audio-recorder-options ${
           !isRecording ? "display-none" : ""
-        }`}
+        } ${classes?.AudioRecorderPauseResumeClass ?? ""}`}
         onClick={togglePauseResume}
         title={isPaused ? "Resume recording" : "Pause recording"}
         data-testid="ar_pause"
@@ -104,9 +97,9 @@ const AudioRecorder: (props: Props) => ReactElement = ({
         icon={faTrash}
         className={`audio-recorder-options ${
           !isRecording ? "display-none" : ""
-        }`}
+        } ${classes?.AudioRecorderDiscardClass ?? ""}`}
         onClick={() => stopAudioRecorder(false)}
-        title="Cancel Recording"
+        title="Discard Recording"
         data-testid="ar_cancel"
       />
     </div>
