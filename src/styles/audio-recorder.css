@@ -21,6 +21,8 @@
     margin-left: 10px;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-size: 14px;
+    font-weight: 400;
+    line-height: 1;
 }
 
 .audio-recorder-status {
@@ -37,7 +39,7 @@
     background-color: rgb(221, 0, 0);
     border-radius: 50%;
     height: 10px;
-    width: 10px;
+    width: 9px;
     margin-right: 5px;
 }
 

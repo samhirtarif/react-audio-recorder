@@ -57,6 +57,7 @@ const AudioRecorder: (props: Props) => ReactElement = ({
         className="audio-recorder-mic"
         onClick={isRecording ? () => stopAudioRecorder() : startRecording}
         data-testid="ar_mic"
+        title={isRecording ? "Save recording" : "Start recording"}
       />
       <span
         className={`audio-recorder-timer ${!isRecording ? "display-none" : ""}`}
@@ -79,6 +80,7 @@ const AudioRecorder: (props: Props) => ReactElement = ({
           !isRecording ? "display-none" : ""
         }`}
         onClick={togglePauseResume}
+        title={isPaused ? "Resume recording" : "Pause recording"}
         data-testid="ar_pause"
       />
       <FontAwesomeIcon
@@ -87,6 +89,7 @@ const AudioRecorder: (props: Props) => ReactElement = ({
           !isRecording ? "display-none" : ""
         }`}
         onClick={() => stopAudioRecorder(false)}
+        title="Cancel Recording"
         data-testid="ar_cancel"
       />
     </div>
