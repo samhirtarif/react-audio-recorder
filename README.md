@@ -9,16 +9,16 @@ npm install react-audio-recorder
 
 ## Usage
 
-### **AudioRecorder** Component
+### **AudioRecorder** Component ([Usage](https://stackblitz.com/edit/react-ts-cc5l47?file=App.tsx))
 
 You can use an out-of-the-box component that takes `onRecordingComplete` method as a prop and calls it when you save the recording
 
 ```js
 import React from "react";
 import ReactDOM from "react-dom/client";
-import AudioRecorder from "react-audio-recorder";
+import { AudioRecorder } from 'react-audio-voice-recorder';
 
-const addAudioElement = (blob: Blob) => {
+const addAudioElement = (blob) => {
   const url = URL.createObjectURL(blob);
   const audio = document.createElement("audio");
   audio.src = url;
@@ -69,6 +69,9 @@ Number of seconds that the recording has gone on. This is updated every second
 ### Sample usage of hook
 
 ```js
+  import { useAudioRecorder } from 'react-audio-voice-recorder';
+  // ...
+  // ...
   const {
     startRecording,
     stopRecording,
@@ -86,8 +89,7 @@ This is for scenarios where you would wish to control the `AudioRecorder` compon
 #### Sample usage
 
 ```js
-import AudioRecorder from "./components/AudioRecordingComponent";
-import useAudioRecorder from "./hooks/useAudioRecorder";
+import { AudioRecorder, useAudioRecorder } from 'react-audio-voice-recorder';
 
 const ExampleComponent = () => {
   const recorderControls = useAudioRecorder()

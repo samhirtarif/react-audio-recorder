@@ -9,12 +9,14 @@
     display: flex;
     align-items: center;
 
-    padding: 12px 14px;
+    padding: 12px 12px;
     transition: all 0.2s ease-in;
 }
 
 .audio-recorder-mic {
     cursor: pointer;
+    height: 16px;
+    color: black;
 }
 
 .audio-recorder-timer, .audio-recorder-status {
@@ -44,6 +46,7 @@
 }
 
 .audio-recorder-options {
+    height: 16px;
     margin-left: 10px;
     cursor: pointer;
 }
