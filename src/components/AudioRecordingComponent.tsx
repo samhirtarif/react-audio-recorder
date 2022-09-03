@@ -22,7 +22,7 @@ interface Props {
    * Allows calling of hook outside this component. The controls returned by the hook can then be passed to the component using this prop.
    * This allows for use of hook methods and state outside this component
    **/
-  recorderControls?: recorderControls
+  recorderControls?: recorderControls;
 }
 
 const AudioRecorder: (props: Props) => ReactElement = ({
@@ -37,7 +37,8 @@ const AudioRecorder: (props: Props) => ReactElement = ({
     isRecording,
     isPaused,
     recordingTime,
-  } = recorderControls || useAudioRecorder();
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+  } = recorderControls ?? useAudioRecorder();
   const [shouldSave, setShouldSave] = useState(false);
 
   const stopAudioRecorder: (save?: boolean) => void = (

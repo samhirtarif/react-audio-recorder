@@ -34,7 +34,8 @@
                 "trailingComma": "es5"
             }
         ],
-        "react-hooks/exhaustive-deps": "off" 
+        "react-hooks/exhaustive-deps": "off",
+        "@typescript-eslint/strict-boolean-expressions": "off"
 
     },
     "ignorePatterns": ["src/main.tsx", "src/vite-env.d.ts"]
