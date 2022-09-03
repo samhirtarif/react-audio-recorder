@@ -1,9 +1,13 @@
 {
   "name": "react-audio-voice-recorder",
   "private": false,
-  "version": "0.0.10",
+  "version": "0.0.14",
   "license": "MIT",
   "author": "",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/samhirtarif/react-audio-recorder.git"
+  },
   "keywords": [
     "react",
     "reactjs",
@@ -21,6 +25,7 @@
   ],
   "main": "./dist/react-audio-voice-recorder.umd.js",
   "module": "./dist/react-audio-voice-recorder.es.js",
+  "types": "./dist/index.d.ts",
   "exports": {
     ".": {
       "import": "./dist/react-audio-voice-recorder.es.js",
@@ -74,6 +79,8 @@
     "prettier": "^2.7.1",
     "typescript": "^4.8.2",
     "vite": "^3.0.7",
+    "vite-plugin-css-injected-by-js": "^2.0.4",
+    "vite-plugin-dts": "^1.4.1",
     "vitest": "^0.22.1"
   }
 }
