@@ -1,7 +1,7 @@
 {
   "name": "react-audio-voice-recorder",
   "private": false,
-  "version": "0.0.14",
+  "version": "1.0.2",
   "license": "MIT",
   "author": "",
   "repository": {
@@ -17,7 +17,9 @@
     "audio recorder",
     "voice recording",
     "voice recorder",
-    "recorder"
+    "recorder",
+    "getUserMedia",
+    "mediaDevices"
   ],
   "files": [
     "dist",

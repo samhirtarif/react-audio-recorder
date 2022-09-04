@@ -32,6 +32,9 @@ ReactDOM.createRoot(document.getElementById("root")).render(
   </React.StrictMode>
 );
 ```
+
+The component also takes a `classes` as a prop, allowing you to modify the styles for the entire component or specific portions of it.
+
 ---
 ### **useAudioRecorder** hook
 
@@ -86,7 +89,7 @@ Number of seconds that the recording has gone on. This is updated every second
 ### Combine the **`useAudioRecorder`** hook and the **`AudioRecorder`** component
 This is for scenarios where you would wish to control the `AudioRecorder` component from outside the component. You can call the `useAudioRecorder` and pass the object it returns to the **`recorderControls`** of the `AudioRecorder`. This would enable you to control the `AudioRecorder` component from outside the component as well
 
-#### Sample usage
+#### Sample usage ([Working example](https://stackblitz.com/edit/react-ts-ryj6jz?file=App.tsx))
 
 ```js
 import { AudioRecorder, useAudioRecorder } from 'react-audio-voice-recorder';
