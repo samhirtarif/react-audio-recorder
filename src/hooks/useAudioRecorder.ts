@@ -58,6 +58,8 @@ const useAudioRecorder: () => recorderControls = () => {
 
         recorder.addEventListener("dataavailable", (event) => {
           setRecordingBlob(event.data);
+          recorder.stream.getTracks().forEach((t) => t.stop());
+          setMediaRecorder(null);
         });
       })
       .catch((err) => console.log(err));
@@ -69,7 +71,6 @@ const useAudioRecorder: () => recorderControls = () => {
   const stopRecording: () => void = () => {
     mediaRecorder?.stop();
     _stopTimer();
-    setMediaRecorder(null);
     setRecordingTime(0);
     setIsRecording(false);
     setIsPaused(false);
