@@ -4,6 +4,7 @@ import { act, render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import "@testing-library/jest-dom";
 import AudioRecorder from "../src/components/AudioRecordingComponent";
+import { V } from "vitest/dist/global-fe52f84b";
 
 const mockGetUserMedia = vi.fn(async () => {
   return new Promise<void>(resolve => {
@@ -23,6 +24,11 @@ const addEventListener = vi.fn().mockImplementation((event, cb) => {
   dataavailableCallback = cb;
 })
 
+const stop = vi.fn()
+const getTracks = vi.fn(() => ([{
+  stop: stop
+}]))
+
 Object.defineProperty(window, 'MediaRecorder', {
   writable: true,
   value: vi.fn().mockImplementation(() => ({
@@ -36,7 +42,10 @@ Object.defineProperty(window, 'MediaRecorder', {
           data: new Blob([JSON.stringify({ a: 1 }, null, 2)], {type : 'application/json'})
         })
       }),
-      pause: vi.fn()
+      pause: vi.fn(),
+      stream: {
+        getTracks
+      }
   }))
 });
 
@@ -59,6 +68,8 @@ describe("Test AudioRecorder", () => {
     await user.click(audioRecorderCanel)
 
     expect(audioRecorder.classList.contains("recording")).toBeFalsy()
+    expect(getTracks).toHaveBeenCalled()
+    expect(stop).toHaveBeenCalled()
   });
 
 
@@ -74,6 +85,8 @@ describe("Test AudioRecorder", () => {
     await user.click(audioRecorderMic)
     expect(audioRecorder.classList.contains("recording")).toBeFalsy()
     expect(onRecordingComplete).toHaveBeenCalled()
+    expect(getTracks).toHaveBeenCalled()
+    expect(stop).toHaveBeenCalled()
   });
 
 
@@ -98,6 +111,8 @@ describe("Test AudioRecorder", () => {
       await user.click(audioRecorderMic)
       expect(audioRecorder.classList.contains("recording")).toBeFalsy()
       expect(onRecordingComplete).toHaveBeenCalled()
+      expect(getTracks).toHaveBeenCalled()
+      expect(stop).toHaveBeenCalled()
       res(1);
     }, 1000))
   });
@@ -121,6 +136,8 @@ describe("Test AudioRecorder", () => {
       await user.click(audioRecorderMic)
       expect(audioRecorder.classList.contains("recording")).toBeFalsy()
       expect(onRecordingComplete).toHaveBeenCalled()
+      expect(getTracks).toHaveBeenCalled()
+      expect(stop).toHaveBeenCalled()
       res(1);
     }, 1000))
   });
