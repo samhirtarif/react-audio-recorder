@@ -2,20 +2,22 @@
     background-color: rgb(235, 235, 235);
     /* border: 1px solid gray; */
     box-shadow: 0px 2px 5px 0px rgb(190, 190, 190);
-    border-radius: 20px;
+    border-radius: 25px;
     box-sizing: border-box;
 
-    width: 40px;
+    height: 46px;
+    max-height: 46px;
+    width: 46px;
     display: flex;
     align-items: center;
 
-    padding: 12px 12px;
+    padding: 10px 14px;
     transition: all 0.2s ease-in;
 }
 
 .audio-recorder-mic {
     cursor: pointer;
-    height: 16px;
+    height: 18px;
     color: black;
 }
 
@@ -25,6 +27,11 @@
     font-size: 14px;
     font-weight: 400;
     line-height: 1;
+}
+
+.audio-recorder-visualizer {
+    margin-left: 15px;
+    flex-grow: 1;
 }
 
 .audio-recorder-status {
@@ -65,4 +72,18 @@
     0%   {opacity: 1;}
     50%  {opacity: 0;}
     100% {opacity: 1;}
+}
+
+.audio-visualizer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-height: 38px;
+}
+
+.visualizer-bar {
+    max-height: 38px;
+    width: 2px;
+    margin: 0 1px;
+    background-color: rgba(87, 154, 255, 0.40);
 }

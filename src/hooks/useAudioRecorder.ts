@@ -8,6 +8,8 @@ export interface recorderControls {
   isRecording: boolean;
   isPaused: boolean;
   recordingTime: number;
+  mediaStream?: MediaStream;
+  mediaRecorder?: MediaRecorder;
 }
 
 /**
@@ -20,12 +22,15 @@ export interface recorderControls {
  * @details `isRecording`: A boolean value that represents whether a recording is currently in progress
  * @details `isPaused`: A boolean value that represents whether a recording in progress is paused
  * @details `recordingTime`: Number of seconds that the recording has gone on. This is updated every second
+ * @details `mediaStream`: The current mediaStream being used
+ * @details `mediaRecorder`: The current mediaRecorder in use
  */
 const useAudioRecorder: () => recorderControls = () => {
   const [isRecording, setIsRecording] = useState(false);
   const [isPaused, setIsPaused] = useState(false);
   const [recordingTime, setRecordingTime] = useState(0);
-  const [mediaRecorder, setMediaRecorder] = useState<MediaRecorder | null>();
+  const [mediaRecorder, setMediaRecorder] = useState<MediaRecorder>();
+  const [mediaStream, setMediaStream] = useState<MediaStream>();
   const [timerInterval, setTimerInterval] = useState<NodeJS.Timer>();
   const [recordingBlob, setRecordingBlob] = useState<Blob>();
 
@@ -53,13 +58,14 @@ const useAudioRecorder: () => recorderControls = () => {
         setIsRecording(true);
         const recorder: MediaRecorder = new MediaRecorder(stream);
         setMediaRecorder(recorder);
+        setMediaStream(stream)
         recorder.start();
         _startTimer();
 
         recorder.addEventListener("dataavailable", (event) => {
           setRecordingBlob(event.data);
           recorder.stream.getTracks().forEach((t) => t.stop());
-          setMediaRecorder(null);
+          setMediaRecorder(undefined);
         });
       })
       .catch((err) => console.log(err));
@@ -99,6 +105,8 @@ const useAudioRecorder: () => recorderControls = () => {
     isRecording,
     isPaused,
     recordingTime,
+    mediaStream,
+    mediaRecorder
   };
 };
 

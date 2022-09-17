@@ -40,7 +40,26 @@ export interface Props {
    **/
   recorderControls?: recorderControls;
   /**
+   * Shows audio visualizer
+   **/
+  showVisualizer?: boolean;
+  /**
    * Custom classes to changes styles.
    **/
   classes?: StyleProps;
+}
+
+export interface VisualizerProps {
+  /**
+   * MediaRecorder utilizing the stream
+   */
+  recorder: MediaRecorder
+  /**
+   * MediaStream to visualize
+   */
+  stream: MediaStream;
+  /**
+   * Used to divide the decible frequency to resize it
+   */
+  resizeRatio?: number;
 }
