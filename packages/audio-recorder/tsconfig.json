@@ -13,8 +13,9 @@
     "moduleResolution": "Node",
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "noEmit": true,
-    "jsx": "react-jsx"
+    "noEmit": false,
+    "jsx": "react-jsx",
+    "composite": true
   },
   "include": ["src", "tests/AudioRecordingComponent.test.tsx"],
   "references": [{ "path": "./tsconfig.node.json" }]

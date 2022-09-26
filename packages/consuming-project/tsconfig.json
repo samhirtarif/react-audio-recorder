@@ -14,8 +14,18 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "jsx": "react-jsx"
+    "jsx": "react-jsx",
+    "composite": true,
+    "paths": {
+      "react-audio-voice-recorder": ["../audio-recorder/src"]
+    }
   },
   "include": ["src"],
-  "references": [{ "path": "./tsconfig.node.json" }]
+  "references": [
+    { "path": "./tsconfig.node.json" },
+    { "path": "../audio-recorder" }
+  ],
+  "files": [
+    "src/main.tsx"
+  ]
 }
