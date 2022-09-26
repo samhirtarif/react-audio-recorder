@@ -1,43 +1,10 @@
 {
-  "name": "react-audio-voice-recorder",
+  "name": "react-audio-samhir",
   "private": false,
   "version": "1.0.4",
   "license": "MIT",
   "author": "",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/samhirtarif/react-audio-recorder.git"
-  },
-  "keywords": [
-    "react",
-    "reactjs",
-    "audio",
-    "voice",
-    "audio recording",
-    "audio recorder",
-    "voice recording",
-    "voice recorder",
-    "recorder",
-    "getUserMedia",
-    "mediaDevices"
-  ],
-  "files": [
-    "dist",
-    "README.md"
-  ],
-  "main": "./dist/react-audio-voice-recorder.umd.js",
-  "module": "./dist/react-audio-voice-recorder.es.js",
-  "types": "./dist/index.d.ts",
-  "exports": {
-    ".": {
-      "import": "./dist/react-audio-voice-recorder.es.js",
-      "require": "./dist/react-audio-voice-recorder.umd.js"
-    }
-  },
   "scripts": {
-    "dev": "vite",
-    "build": "tsc && vite build",
-    "preview": "vite preview",
     "lint": "eslint src/**/*.ts{,x}",
     "lint:fix": "npm run lint -- --fix",
     "test": "vitest",
@@ -84,9 +51,5 @@
     "vite-plugin-css-injected-by-js": "^2.0.4",
     "vite-plugin-dts": "^1.4.1",
     "vitest": "^0.22.1"
-  },
-  "dependencies": {
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0"
   }
 }
