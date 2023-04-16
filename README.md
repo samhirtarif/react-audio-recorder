@@ -84,6 +84,12 @@ Number of seconds that the recording has gone on. This is updated every second
     isPaused,
     recordingTime,
   } = useAudioRecorder();
+
+  useEffect(() => {
+    if (!recordingBlob) return;
+
+    // recordingBlob will be present at this point after 'stopRecording' has been called
+  }, [recordingBlob])
 ```
 ---
 ### Combine the **`useAudioRecorder`** hook and the **`AudioRecorder`** component
