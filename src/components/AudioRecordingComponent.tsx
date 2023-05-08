@@ -16,11 +16,15 @@ import "../styles/audio-recorder.css";
  * @prop `onRecordingComplete` Method that gets called when save recording option is clicked
  * @prop `recorderControls` Externally initilize hook and pass the returned object to this param, this gives your control over the component from outside the component.
  * https://github.com/samhirtarif/react-audio-recorder#combine-the-useaudiorecorder-hook-and-the-audiorecorder-component
+ * @prop `downloadOnSavePress` If set to `true` the file gets downloaded when save recording is pressed. Defaults to `false`
+ * @prop `downloadFileExtension` File extension for the audio filed that gets downloaded. Defaults to `mp3`. Allowed values are `mp3`, `wav` and `webm`
  * @prop `classes` Is an object with attributes representing classes for different parts of the component
  */
 const AudioRecorder: (props: Props) => ReactElement = ({
   onRecordingComplete,
   recorderControls,
+  downloadOnSavePress = false,
+  downloadFileExtension = "mp3",
   classes,
 }: Props) => {
   const {
@@ -33,12 +37,28 @@ const AudioRecorder: (props: Props) => ReactElement = ({
     recordingTime,
     // eslint-disable-next-line react-hooks/rules-of-hooks
   } = recorderControls ?? useAudioRecorder();
+
   const [shouldSave, setShouldSave] = useState(false);
+
   const stopAudioRecorder: (save?: boolean) => void = (
     save: boolean = true
   ) => {
     setShouldSave(save);
     stopRecording();
+  };
+
+  const downloadBlob = (blob: Blob): void => {
+    const downloadBlob = new Blob([blob], {
+      type: `audio/${downloadFileExtension}`,
+    });
+    const url = URL.createObjectURL(downloadBlob);
+
+    const a = document.createElement("a");
+    a.style.display = "none";
+    a.href = url;
+    a.download = `audio.${downloadFileExtension}`;
+    document.body.appendChild(a);
+    a.click();
   };
 
   useEffect(() => {
@@ -49,7 +69,12 @@ const AudioRecorder: (props: Props) => ReactElement = ({
     ) {
       onRecordingComplete(recordingBlob);
     }
+
+    if (downloadOnSavePress && recordingBlob != null) {
+      downloadBlob(recordingBlob);
+    }
   }, [recordingBlob]);
+
   return (
     <div
       className={`audio-recorder ${isRecording ? "recording" : ""} ${

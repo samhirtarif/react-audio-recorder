@@ -28,13 +28,21 @@ const addAudioElement = (blob) => {
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <AudioRecorder onRecordingComplete={addAudioElement} />
+    <AudioRecorder 
+      onRecordingComplete={addAudioElement} 
+      downloadOnSavePress={true}
+      downloadFileExtension="mp3"
+    />
   </React.StrictMode>
 );
 ```
 
-The component also takes a `classes` as a prop, allowing you to modify the styles for the entire component or specific portions of it.
-
+| Props  | Description | Default | Optional |
+| :------------ |:--------------- |:--------------- | :--------------- |
+| **`onRecordingComplete`**  | A method that gets called when "Save recording" option is pressed | N/A | Yes |
+| **`downloadOnSavePress`**  | A `boolean` value that determines if the recording should be downloaded when "Save recording" option is pressed | `false` | Yes |
+| **`downloadFileExtension`**  | The file extension to be used for the downloaded file. Allowed values are `mp3`, `wav` and `webm` | `mp3` | Yes |
+| **`classes`** | This allows class names to be passed to modify the styles for the entire component or specific portions of it | N/A | Yes |
 ---
 ### **useAudioRecorder** hook
 
@@ -42,32 +50,15 @@ If you prefer to build up your own UI but take advantage of the implementation p
 
 The hook returns the following:
 
-#### **`startRecording`**
-Calling this method would result in the recording to start. Sets `isRecording` to `true`
-
-
-#### **`stopRecording`**
-This results in a recording in progress being stopped and the resulting audio being present in `recordingBlob`. Sets `isRecording` to `false`
-
-
-#### **`togglePauseResume`**
-Calling this method would pause the recording if it is currently running or resume if it is paused. Toggles the value `isPaused`
-
-
-#### **`recordingBlob`**
-This is the recording blob that is created after `stopRecording` has been called
-
-
-#### **`isRecording`**
-A boolean value that represents whether a recording is currently in progress
-
-
-#### **`isPaused`**
-A boolean value that represents whether a recording in progress is paused
-
-
-#### **`recordingTime`**
-Number of seconds that the recording has gone on. This is updated every second
+| Identifiers   | Description |
+| :------------ |:---------------|
+| **`startRecording`** | Invoking this method starts the recording. Sets `isRecording` to `true` |
+| **`stopRecording`** | Invoking this method stops the recording in progress and the resulting audio is made available in `recordingBlob`. Sets `isRecording` to `false` |
+| **`togglePauseResume`** | Invoking this method would pause the recording if it is currently running or resume if it is paused. Toggles the value `isPaused` |
+| **`recordingBlob`** | This is the recording blob that is created after `stopRecording` has been called |
+| **`isRecording`** | A boolean value that represents whether a recording is currently in progress |
+| **`isPaused`** | A boolean value that represents whether a recording in progress is paused |
+| **`recordingTime`** | Number of seconds that the recording has gone on. This is updated every second |
 
 ### Sample usage of hook
 
