@@ -40,6 +40,14 @@ export interface Props {
    **/
   recorderControls?: recorderControls;
   /**
+   * If set to `true` the file gets downloaded when save recording is pressed
+   **/
+  downloadOnSavePress?: boolean;
+  /**
+   * File extension for the audio filed that gets downloaded
+   **/
+  downloadFileExtension?: "mp3" | "wav" | "webm";
+  /**
    * Custom classes to changes styles.
    **/
   classes?: StyleProps;
