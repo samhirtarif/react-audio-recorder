@@ -59,6 +59,7 @@ const AudioRecorder: (props: Props) => ReactElement = ({
     a.download = `audio.${downloadFileExtension}`;
     document.body.appendChild(a);
     a.click();
+    a.remove();
   };
 
   useEffect(() => {

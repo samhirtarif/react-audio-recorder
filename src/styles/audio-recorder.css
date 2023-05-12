@@ -11,6 +11,7 @@
     align-items: center;
 
     transition: all 0.2s ease-in;
+    -webkit-tap-highlight-color: transparent;
 }
 
 .audio-recorder-mic {
