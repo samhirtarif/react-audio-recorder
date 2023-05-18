@@ -101,7 +101,7 @@ const useAudioRecorder: () => recorderControls = () => {
     isRecording,
     isPaused,
     recordingTime,
-    mediaRecorder
+    mediaRecorder,
   };
 };
 
