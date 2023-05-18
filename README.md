@@ -59,6 +59,7 @@ The hook returns the following:
 | **`isRecording`** | A boolean value that represents whether a recording is currently in progress |
 | **`isPaused`** | A boolean value that represents whether a recording in progress is paused |
 | **`recordingTime`** | Number of seconds that the recording has gone on. This is updated every second |
+| **`mediaRecorder`** | The current mediaRecorder in use. Can be undefined in case recording is not in progress |
 
 ### Sample usage of hook
 
@@ -74,6 +75,7 @@ The hook returns the following:
     isRecording,
     isPaused,
     recordingTime,
+    mediaRecorder
   } = useAudioRecorder();
 
   useEffect(() => {
