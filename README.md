@@ -45,6 +45,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
 | :------------ |:--------------- |:--------------- | :--------------- |
 | **`onRecordingComplete`**  | A method that gets called when "Save recording" option is pressed | N/A | Yes |
 | **`audioTrackConstraints`** | Takes a [subset](https://developer.mozilla.org/en-US/docs/Web/API/MediaTrackSettings#instance_properties_of_audio_tracks) of `MediaTrackConstraints` that apply to the audio track | N/A | Yes
+| **`onNotAllowedOrFound`** | This gets called when the `getUserMedia` promise is rejected. It takes the resultant `DOMException` as its parameter | N/A | Yes
 | **`downloadOnSavePress`**  | A `boolean` value that determines if the recording should be downloaded when "Save recording" option is pressed | `false` | Yes |
 | **`downloadFileExtension`**  | The file extension to be used for the downloaded file. Allowed values are `mp3`, `wav` and `webm` | `mp3` | Yes |
 | **`classes`** | This allows class names to be passed to modify the styles for the entire component or specific portions of it | N/A | Yes |
@@ -53,9 +54,10 @@ ReactDOM.createRoot(document.getElementById("root")).render(
 
 If you prefer to build up your own UI but take advantage of the implementation provided by this package, you can use this hook instead of the component
 
-| Params   | Description |
-| :------------ |:---------------|
-| **`audioTrackConstraints`** | Takes a [subset](https://developer.mozilla.org/en-US/docs/Web/API/MediaTrackSettings#instance_properties_of_audio_tracks) of `MediaTrackConstraints` that apply to the audio track |
+| Params   | Description | Optional |
+| :------------ |:---------------|:---------------|
+| **`audioTrackConstraints`** | Takes a [subset](https://developer.mozilla.org/en-US/docs/Web/API/MediaTrackSettings#instance_properties_of_audio_tracks) of `MediaTrackConstraints` that apply to the audio track | Yes |
+| **`onNotAllowedOrFound`** | This gets called when the `getUserMedia` promise is rejected. It takes the resultant `DOMException` as its parameter | Yes |
 
 The hook returns the following:
 
@@ -123,3 +125,5 @@ const ExampleComponent = () => {
   )
 }
 ```
+
+**NOTE: When using both `AudioRecorder` and `useAudioRecorder` in combination, the `audioTrackConstraints` and `onNotAllowedOrFound` should be provided in the `useAudioRecorder` hook**

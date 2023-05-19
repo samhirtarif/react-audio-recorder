@@ -18,6 +18,7 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
         noiseSuppression: true,
         echoCancellation: true,
       }} 
+      onNotAllowedOrFound={(err) => console.table(err)}
     />
   </React.StrictMode>
 );

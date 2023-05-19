@@ -17,12 +17,14 @@ import "../styles/audio-recorder.css";
  * @prop `recorderControls` Externally initilize hook and pass the returned object to this param, this gives your control over the component from outside the component.
  * https://github.com/samhirtarif/react-audio-recorder#combine-the-useaudiorecorder-hook-and-the-audiorecorder-component
  * @prop `audioTrackConstraints`: Takes a {@link https://developer.mozilla.org/en-US/docs/Web/API/MediaTrackSettings#instance_properties_of_audio_tracks subset} of `MediaTrackConstraints` that apply to the audio track
+ * @prop `onNotAllowedOrFound`: A method that gets called when the getUserMedia promise is rejected. It receives the DOMException as its input.
  * @prop `downloadOnSavePress` If set to `true` the file gets downloaded when save recording is pressed. Defaults to `false`
  * @prop `downloadFileExtension` File extension for the audio filed that gets downloaded. Defaults to `mp3`. Allowed values are `mp3`, `wav` and `webm`
  * @prop `classes` Is an object with attributes representing classes for different parts of the component
  */
 const AudioRecorder: (props: Props) => ReactElement = ({
   onRecordingComplete,
+  onNotAllowedOrFound,
   recorderControls,
   audioTrackConstraints,
   downloadOnSavePress = false,
@@ -37,8 +39,10 @@ const AudioRecorder: (props: Props) => ReactElement = ({
     isRecording,
     isPaused,
     recordingTime,
+  } =
+    recorderControls ??
     // eslint-disable-next-line react-hooks/rules-of-hooks
-  } = recorderControls ?? useAudioRecorder(audioTrackConstraints);
+    useAudioRecorder(audioTrackConstraints, onNotAllowedOrFound);
 
   const [shouldSave, setShouldSave] = useState(false);
 
@@ -71,10 +75,9 @@ const AudioRecorder: (props: Props) => ReactElement = ({
       onRecordingComplete != null
     ) {
       onRecordingComplete(recordingBlob);
-    }
-
-    if (downloadOnSavePress && recordingBlob != null) {
-      downloadBlob(recordingBlob);
+      if (downloadOnSavePress) {
+        downloadBlob(recordingBlob);
+      }
     }
   }, [recordingBlob]);
 
