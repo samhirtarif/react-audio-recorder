@@ -16,6 +16,7 @@ import "../styles/audio-recorder.css";
  * @prop `onRecordingComplete` Method that gets called when save recording option is clicked
  * @prop `recorderControls` Externally initilize hook and pass the returned object to this param, this gives your control over the component from outside the component.
  * https://github.com/samhirtarif/react-audio-recorder#combine-the-useaudiorecorder-hook-and-the-audiorecorder-component
+ * @prop `audioTrackConstraints`: Takes a {@link https://developer.mozilla.org/en-US/docs/Web/API/MediaTrackSettings#instance_properties_of_audio_tracks subset} of `MediaTrackConstraints` that apply to the audio track
  * @prop `downloadOnSavePress` If set to `true` the file gets downloaded when save recording is pressed. Defaults to `false`
  * @prop `downloadFileExtension` File extension for the audio filed that gets downloaded. Defaults to `mp3`. Allowed values are `mp3`, `wav` and `webm`
  * @prop `classes` Is an object with attributes representing classes for different parts of the component
@@ -23,6 +24,7 @@ import "../styles/audio-recorder.css";
 const AudioRecorder: (props: Props) => ReactElement = ({
   onRecordingComplete,
   recorderControls,
+  audioTrackConstraints,
   downloadOnSavePress = false,
   downloadFileExtension = "mp3",
   classes,
@@ -36,7 +38,7 @@ const AudioRecorder: (props: Props) => ReactElement = ({
     isPaused,
     recordingTime,
     // eslint-disable-next-line react-hooks/rules-of-hooks
-  } = recorderControls ?? useAudioRecorder();
+  } = recorderControls ?? useAudioRecorder(audioTrackConstraints);
 
   const [shouldSave, setShouldSave] = useState(false);
 

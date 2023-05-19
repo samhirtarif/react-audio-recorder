@@ -11,8 +11,22 @@ export interface recorderControls {
   mediaRecorder?: MediaRecorder;
 }
 
+export type MediaAudioTrackConstraints = Pick<
+  MediaTrackConstraints,
+  | "deviceId"
+  | "groupId"
+  | "autoGainControl"
+  | "channelCount"
+  | "echoCancellation"
+  | "noiseSuppression"
+  | "sampleRate"
+  | "sampleSize"
+>;
+
 /**
  * @returns Controls for the recording. Details of returned controls are given below
+ *
+ * @param `audioTrackConstraints`: Takes a {@link https://developer.mozilla.org/en-US/docs/Web/API/MediaTrackSettings#instance_properties_of_audio_tracks subset} of `MediaTrackConstraints` that apply to the audio track
  *
  * @details `startRecording`: Calling this method would result in the recording to start. Sets `isRecording` to true
  * @details `stopRecording`: This results in a recording in progress being stopped and the resulting audio being present in `recordingBlob`. Sets `isRecording` to false
@@ -23,7 +37,9 @@ export interface recorderControls {
  * @details `recordingTime`: Number of seconds that the recording has gone on. This is updated every second
  * @details `mediaRecorder`: The current mediaRecorder in use
  */
-const useAudioRecorder: () => recorderControls = () => {
+const useAudioRecorder: (
+  audioTrackConstraints?: MediaAudioTrackConstraints
+) => recorderControls = (audioTrackConstraints) => {
   const [isRecording, setIsRecording] = useState(false);
   const [isPaused, setIsPaused] = useState(false);
   const [recordingTime, setRecordingTime] = useState(0);
@@ -50,7 +66,7 @@ const useAudioRecorder: () => recorderControls = () => {
     if (timerInterval != null) return;
 
     navigator.mediaDevices
-      .getUserMedia({ audio: true })
+      .getUserMedia({ audio: audioTrackConstraints ?? true })
       .then((stream) => {
         setIsRecording(true);
         const recorder: MediaRecorder = new MediaRecorder(stream);

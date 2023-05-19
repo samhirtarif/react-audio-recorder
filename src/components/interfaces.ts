@@ -1,4 +1,7 @@
-import { recorderControls } from "../hooks/useAudioRecorder";
+import {
+  MediaAudioTrackConstraints,
+  recorderControls,
+} from "../hooks/useAudioRecorder";
 
 interface StyleProps {
   /**
@@ -39,6 +42,20 @@ export interface Props {
    * @sample_usage https://github.com/samhirtarif/react-audio-recorder#combine-the-useaudiorecorder-hook-and-the-audiorecorder-component
    **/
   recorderControls?: recorderControls;
+  /**
+   * Takes a {@link https://developer.mozilla.org/en-US/docs/Web/API/MediaTrackSettings#instance_properties_of_audio_tracks subset} of
+   * `MediaTrackConstraints` that apply to the audio track
+   *
+   * @Property `deviceId`
+   * @Property `groupId`
+   * @Property `autoGainControl`
+   * @Property `channelCount`
+   * @Property `echoCancellation`
+   * @Property `noiseSuppression`
+   * @Property `sampleRate`
+   * @Property `sampleSize`
+   */
+  audioTrackConstraints?: MediaAudioTrackConstraints;
   /**
    * If set to `true` the file gets downloaded when save recording is pressed
    **/
