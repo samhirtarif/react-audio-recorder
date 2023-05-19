@@ -27,6 +27,7 @@ export type MediaAudioTrackConstraints = Pick<
  * @returns Controls for the recording. Details of returned controls are given below
  *
  * @param `audioTrackConstraints`: Takes a {@link https://developer.mozilla.org/en-US/docs/Web/API/MediaTrackSettings#instance_properties_of_audio_tracks subset} of `MediaTrackConstraints` that apply to the audio track
+ * @param `onNotAllowedOrFound`: A method that gets called when the getUserMedia promise is rejected. It receives the DOMException as its input.
  *
  * @details `startRecording`: Calling this method would result in the recording to start. Sets `isRecording` to true
  * @details `stopRecording`: This results in a recording in progress being stopped and the resulting audio being present in `recordingBlob`. Sets `isRecording` to false
@@ -38,8 +39,9 @@ export type MediaAudioTrackConstraints = Pick<
  * @details `mediaRecorder`: The current mediaRecorder in use
  */
 const useAudioRecorder: (
-  audioTrackConstraints?: MediaAudioTrackConstraints
-) => recorderControls = (audioTrackConstraints) => {
+  audioTrackConstraints?: MediaAudioTrackConstraints,
+  onNotAllowedOrFound?: (exception: DOMException) => any
+) => recorderControls = (audioTrackConstraints, onNotAllowedOrFound) => {
   const [isRecording, setIsRecording] = useState(false);
   const [isPaused, setIsPaused] = useState(false);
   const [recordingTime, setRecordingTime] = useState(0);
@@ -80,7 +82,10 @@ const useAudioRecorder: (
           setMediaRecorder(undefined);
         });
       })
-      .catch((err) => console.log(err));
+      .catch((err: DOMException) => {
+        console.log(err.name, err.message, err.cause);
+        onNotAllowedOrFound?.(err);
+      });
   }, [timerInterval]);
 
   /**
