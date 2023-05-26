@@ -78,6 +78,14 @@
     display: none;
 }
 
+.audio-recorder-visualizer {
+    margin-left: 15px;
+    flex-grow: 1;
+    align-self: center;
+    display: flex;
+    align-items: center;
+}
+
 @keyframes fading-ar-status {
     0%   {opacity: 1;}
     50%  {opacity: 0;}

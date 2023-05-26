@@ -1,6 +1,7 @@
 import React, { useState, useEffect, ReactElement } from "react";
 import { Props } from "./interfaces";
 import useAudioRecorder from "../hooks/useAudioRecorder";
+import { LiveAudioVisualizer } from "react-audio-visualize"
 
 import micSVG from "../icons/mic.svg";
 import pauseSVG from "../icons/pause.svg";
@@ -29,6 +30,7 @@ const AudioRecorder: (props: Props) => ReactElement = ({
   audioTrackConstraints,
   downloadOnSavePress = false,
   downloadFileExtension = "mp3",
+  showVisualizer = false,
   classes,
 }: Props) => {
   const {
@@ -39,6 +41,7 @@ const AudioRecorder: (props: Props) => ReactElement = ({
     isRecording,
     isPaused,
     recordingTime,
+    mediaRecorder,
   } =
     recorderControls ??
     // eslint-disable-next-line react-hooks/rules-of-hooks
@@ -106,14 +109,33 @@ const AudioRecorder: (props: Props) => ReactElement = ({
         {Math.floor(recordingTime / 60)}:
         {String(recordingTime % 60).padStart(2, "0")}
       </span>
-      <span
-        className={`audio-recorder-status ${
-          !isRecording ? "display-none" : ""
-        } ${classes?.AudioRecorderStatusClass ?? ""}`}
-      >
-        <span className="audio-recorder-status-dot"></span>
-        Recording
-      </span>
+      {
+        showVisualizer
+        ? <span className={`audio-recorder-visualizer ${!isRecording ? "display-none" : ""}`}>
+          {mediaRecorder &&
+              <LiveAudioVisualizer 
+                mediaRecorder={mediaRecorder}
+                barWidth={3}
+                gap={2}
+
+                width={140}
+                height={30}
+                fftSize={256}
+                maxDecibels={-10}
+                minDecibels={-70}
+                smoothingTimeConstant={0.7}
+              />
+          }
+        </span>
+        : <span
+          className={`audio-recorder-status ${
+            !isRecording ? "display-none" : ""
+          } ${classes?.AudioRecorderStatusClass ?? ""}`}
+        >
+          <span className="audio-recorder-status-dot"></span>
+          Recording
+        </span>
+      }
       <img
         src={isPaused ? resumeSVG : pauseSVG}
         className={`audio-recorder-options ${

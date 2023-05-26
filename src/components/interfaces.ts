@@ -70,6 +70,10 @@ export interface Props {
    **/
   downloadFileExtension?: "mp3" | "wav" | "webm";
   /**
+   * Shows audio visualizer
+   **/
+  showVisualizer?: boolean;
+  /**
    * Custom classes to changes styles.
    **/
   classes?: StyleProps;
