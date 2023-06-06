@@ -48,6 +48,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
 | **`onNotAllowedOrFound`** | This gets called when the `getUserMedia` promise is rejected. It takes the resultant `DOMException` as its parameter | N/A | Yes
 | **`downloadOnSavePress`**  | A `boolean` value that determines if the recording should be downloaded when "Save recording" option is pressed | `false` | Yes |
 | **`downloadFileExtension`**  | The file extension to be used for the downloaded file. Allowed values are `mp3`, `wav` and `webm` | `mp3` | Yes |
+| **`showVisualizer`**  | Displays a waveform visualization for the audio when set to `true` | `false` | Yes |
 | **`classes`** | This allows class names to be passed to modify the styles for the entire component or specific portions of it | N/A | Yes |
 ---
 ### **useAudioRecorder** hook

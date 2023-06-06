@@ -70,7 +70,7 @@ export interface Props {
    **/
   downloadFileExtension?: "mp3" | "wav" | "webm";
   /**
-   * Shows audio visualizer
+   * Displays a waveform visualization for the audio when set to `true`. Defaults to `false`
    **/
   showVisualizer?: boolean;
   /**
