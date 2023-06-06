@@ -14,11 +14,12 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
     <AudioRecorder 
       onRecordingComplete={(blob) => addAudioElement(blob)} 
-      audioTrackConstraints={{
-        noiseSuppression: true,
-        echoCancellation: true,
-      }} 
+      // audioTrackConstraints={{
+      //   noiseSuppression: true,
+      //   echoCancellation: true,
+      // }} 
       onNotAllowedOrFound={(err) => console.table(err)}
+      showVisualizer={true}
     />
   </React.StrictMode>
 );

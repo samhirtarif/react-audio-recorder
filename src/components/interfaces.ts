@@ -70,6 +70,10 @@ export interface Props {
    **/
   downloadFileExtension?: "mp3" | "wav" | "webm";
   /**
+   * Displays a waveform visualization for the audio when set to `true`. Defaults to `false`
+   **/
+  showVisualizer?: boolean;
+  /**
    * Custom classes to changes styles.
    **/
   classes?: StyleProps;
