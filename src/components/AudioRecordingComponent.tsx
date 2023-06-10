@@ -1,7 +1,6 @@
-import React, { useState, useEffect, ReactElement } from "react";
+import React, { useState, useEffect, ReactElement, Suspense } from "react";
 import { Props } from "./interfaces";
 import useAudioRecorder from "../hooks/useAudioRecorder";
-import { LiveAudioVisualizer } from "react-audio-visualize";
 
 import micSVG from "../icons/mic.svg";
 import pauseSVG from "../icons/pause.svg";
@@ -9,6 +8,11 @@ import resumeSVG from "../icons/play.svg";
 import saveSVG from "../icons/save.svg";
 import discardSVG from "../icons/stop.svg";
 import "../styles/audio-recorder.css";
+
+const LiveAudioVisualizer = React.lazy(async () => {
+  const { LiveAudioVisualizer } = await import("react-audio-visualize");
+  return { default: LiveAudioVisualizer };
+});
 
 /**
  * Usage: https://github.com/samhirtarif/react-audio-recorder#audiorecorder-component
@@ -117,17 +121,19 @@ const AudioRecorder: (props: Props) => ReactElement = ({
           }`}
         >
           {mediaRecorder && (
-            <LiveAudioVisualizer
-              mediaRecorder={mediaRecorder}
-              barWidth={2}
-              gap={2}
-              width={140}
-              height={30}
-              fftSize={512}
-              maxDecibels={-10}
-              minDecibels={-80}
-              smoothingTimeConstant={0.4}
-            />
+            <Suspense fallback={<></>}>
+              <LiveAudioVisualizer
+                mediaRecorder={mediaRecorder}
+                barWidth={2}
+                gap={2}
+                width={140}
+                height={30}
+                fftSize={512}
+                maxDecibels={-10}
+                minDecibels={-80}
+                smoothingTimeConstant={0.4}
+              />
+            </Suspense>
           )}
         </span>
       ) : (
