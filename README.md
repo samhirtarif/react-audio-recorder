@@ -7,6 +7,14 @@ An audio recording helper for React. Provides a component and a hook to help wit
 npm install react-audio-voice-recorder
 ```
 
+```sh
+yarn add react-audio-voice-recorder
+```
+
+## Migrating from v1 → v2
+### Breaking changes
+- In v2 the `AudioRecorder` prop `downloadFileExtension` no longer supports `mp3` and `wav` without the website using this package being [cross-origin isolated](https://web.dev/cross-origin-isolation-guide/). This change was made in order to fix [issue #54](https://github.com/samhirtarif/react-audio-recorder/issues/54) in v1.2.1
+
 ## Usage
 
 ### **AudioRecorder** Component ([Usage](https://stackblitz.com/edit/react-ts-cc5l47?file=App.tsx))
