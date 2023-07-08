@@ -34,7 +34,7 @@ const AudioRecorder: (props: Props) => ReactElement = ({
   recorderControls,
   audioTrackConstraints,
   downloadOnSavePress = false,
-  downloadFileExtension = "mp3",
+  downloadFileExtension = "webm",
   showVisualizer = false,
   classes,
 }: Props) => {
@@ -61,16 +61,49 @@ const AudioRecorder: (props: Props) => ReactElement = ({
     stopRecording();
   };
 
-  const downloadBlob = (blob: Blob): void => {
-    const downloadBlob = new Blob([blob], {
+  const convertToDownloadFileExtension = async (
+    webmBlob: Blob
+  ): Promise<Blob> => {
+    const FFmpeg = await import("@ffmpeg/ffmpeg");
+    const ffmpeg = FFmpeg.createFFmpeg({ log: false });
+    await ffmpeg.load();
+
+    const inputName = "input.webm";
+    const outputName = `output.${downloadFileExtension}`;
+
+    ffmpeg.FS(
+      "writeFile",
+      inputName,
+      new Uint8Array(await webmBlob.arrayBuffer())
+    );
+
+    await ffmpeg.run("-i", inputName, outputName);
+
+    const outputData = ffmpeg.FS("readFile", outputName);
+    const outputBlob = new Blob([outputData.buffer], {
       type: `audio/${downloadFileExtension}`,
     });
+
+    return outputBlob;
+  };
+
+  const downloadBlob = async (blob: Blob): Promise<void> => {
+    if (!crossOriginIsolated && downloadFileExtension !== "webm") {
+      console.warn(
+        `This website is not "cross-origin isolated". Audio will be downloaded in webm format, since mp3/wav encoding requires cross origin isolation. Please visit https://web.dev/cross-origin-isolation-guide/ and https://web.dev/coop-coep/ for information on how to make your website "cross-origin isolated"`
+      );
+    }
+
+    const downloadBlob = crossOriginIsolated
+      ? await convertToDownloadFileExtension(blob)
+      : blob;
+    const fileExt = crossOriginIsolated ? downloadFileExtension : "webm";
     const url = URL.createObjectURL(downloadBlob);
 
     const a = document.createElement("a");
     a.style.display = "none";
     a.href = url;
-    a.download = `audio.${downloadFileExtension}`;
+    a.download = `audio.${fileExt}`;
     document.body.appendChild(a);
     a.click();
     a.remove();
@@ -84,7 +117,7 @@ const AudioRecorder: (props: Props) => ReactElement = ({
     ) {
       onRecordingComplete(recordingBlob);
       if (downloadOnSavePress) {
-        downloadBlob(recordingBlob);
+        void downloadBlob(recordingBlob);
       }
     }
   }, [recordingBlob]);

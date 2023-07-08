@@ -20,6 +20,8 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
       // }} 
       onNotAllowedOrFound={(err) => console.table(err)}
       showVisualizer={true}
+      downloadOnSavePress
+      downloadFileExtension="mp3"
     />
   </React.StrictMode>
 );

@@ -35,8 +35,13 @@
             }
         ],
         "react-hooks/exhaustive-deps": "off",
-        "@typescript-eslint/strict-boolean-expressions": "off"
-
+        "@typescript-eslint/strict-boolean-expressions": "off",
+        "@typescript-eslint/no-floating-promises": [
+            "error",
+            {
+                "ignoreVoid": true
+            }
+        ]
     },
     "ignorePatterns": ["src/main.tsx", "src/vite-env.d.ts"]
 }
