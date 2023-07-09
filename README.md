@@ -2,6 +2,10 @@
 # **react-audio-voice-recorder**
 An audio recording helper for React. Provides a component and a hook to help with audio recording.
 
+[![NPM downloads][npm-download-img]][npm-download-url]
+
+[npm-download-img]: https://img.shields.io/npm/dm/react-audio-voice-recorder.svg?style=round-square
+[npm-download-url]: https://www.npmjs.com/package/react-audio-voice-recorder
 ## Installation
 ```sh
 npm install react-audio-voice-recorder
