@@ -1,7 +1,7 @@
 {
   "name": "react-audio-voice-recorder",
   "private": false,
-  "version": "2.0.0",
+  "version": "2.0.1",
   "license": "MIT",
   "author": "",
   "repository": {
@@ -97,6 +97,6 @@
   },
   "dependencies": {
     "@ffmpeg/ffmpeg": "^0.11.6",
-    "react-audio-visualize": "^1.1.2"
+    "react-audio-visualize": "^1.1.3"
   }
 }

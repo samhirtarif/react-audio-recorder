@@ -37,7 +37,8 @@ export default defineConfig({
     lib: {
       entry: path.resolve(__dirname, 'src/index.tsx'),
       name: 'AudioRecorder',
-      fileName: (format) => `react-audio-voice-recorder.${format}.js`
+      fileName: (format) => `react-audio-voice-recorder.${format}.js`,
+      formats: ["es"]
     },
     rollupOptions: {
       external: ['react', 'react-dom'],
