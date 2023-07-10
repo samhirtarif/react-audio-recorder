@@ -143,3 +143,22 @@ const ExampleComponent = () => {
 ```
 
 **NOTE: When using both `AudioRecorder` and `useAudioRecorder` in combination, the `audioTrackConstraints` and `onNotAllowedOrFound` should be provided in the `useAudioRecorder` hook**
+
+---
+### Quirks to watch out for
+Chrome on iOS uses a lot of [Safari's features under the hood](https://news.ycombinator.com/item?id=25850091#:~:text=to%20Apple%20Silicon-,On%20iOS%20there%20are%20no%20web%20browsers%20other%20than%20Safari,skins%20on%20top%20of%20Webkit.) So users should be aware that recordings will be in the format `audio/mp4;` instead of `audio/webm` like they would be on Android devices. Desktop browsers work as expected. If using React, you can detect the browser type like this:
+```
+ useEffect(() => {
+    const userAgent = window.navigator.userAgent;
+
+    if (userAgent.indexOf("Firefox") > -1) {
+      setBrowser('firefox');
+    } else if (userAgent.indexOf("Safari") > -1 && userAgent.indexOf("Chrome") === -1) {
+      setBrowser('safari');
+    } else {
+      setBrowser('other');
+    }
+  }, []);
+```
+This will still show Chrome as 'safari', but you can post the browser type along to your backend (along with the Buffer) in order to handle file types correctly.
+Please also be aware that setting `downloadFileExtension="webm"` doesn't affect the encoding of the Buffer which is produced when making a recording.
