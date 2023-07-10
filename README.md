@@ -162,3 +162,5 @@ Chrome on iOS uses a lot of [Safari's features under the hood](https://news.ycom
 ```
 This will still show Chrome as 'safari', but you can post the browser type along to your backend (along with the Buffer) in order to handle file types correctly.
 Please also be aware that setting `downloadFileExtension="webm"` doesn't affect the encoding of the Buffer which is produced when making a recording.
+
+To make things more interesting, Firefox records in ogg, so that also needs to be handled differently.
