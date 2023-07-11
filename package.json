@@ -1,7 +1,8 @@
 {
   "name": "react-audio-voice-recorder",
   "private": false,
-  "version": "2.0.0",
+  "version": "2.1.0",
+  "type": "module",
   "license": "MIT",
   "author": "",
   "repository": {
@@ -30,16 +31,13 @@
     "mpeg"
   ],
   "files": [
-    "dist",
-    "README.md"
+    "dist"
   ],
-  "main": "./dist/react-audio-voice-recorder.umd.js",
   "module": "./dist/react-audio-voice-recorder.es.js",
   "types": "./dist/index.d.ts",
   "exports": {
     ".": {
-      "import": "./dist/react-audio-voice-recorder.es.js",
-      "require": "./dist/react-audio-voice-recorder.umd.js"
+      "import": "./dist/react-audio-voice-recorder.es.js"
     }
   },
   "scripts": {
@@ -97,6 +95,6 @@
   },
   "dependencies": {
     "@ffmpeg/ffmpeg": "^0.11.6",
-    "react-audio-visualize": "^1.1.2"
+    "react-audio-visualize": "^1.1.3"
   }
 }
