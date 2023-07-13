@@ -1,5 +1,5 @@
 
-name: Run vitest
+name: Run tests (vitest)
 on: push
 
 jobs:

@@ -3,9 +3,16 @@
 An audio recording helper for React. Provides a component and a hook to help with audio recording.
 
 [![NPM downloads][npm-download-img]][npm-download-url]
+[![Run ESlint][eslint-img]][eslint-url]
+[![Run Unit tests][test-img]][test-url] 
 
 [npm-download-img]: https://img.shields.io/npm/dm/react-audio-voice-recorder.svg?style=round-square
 [npm-download-url]: https://www.npmjs.com/package/react-audio-voice-recorder
+[eslint-img]: https://github.com/samhirtarif/react-audio-recorder/actions/workflows/lint.yml/badge.svg
+[eslint-url]: https://github.com/samhirtarif/react-audio-recorder/actions/workflows/lint.yml
+[test-img]: https://github.com/samhirtarif/react-audio-recorder/actions/workflows/test.yml/badge.svg
+[test-url]: https://github.com/samhirtarif/react-audio-recorder/actions/workflows/test.yml
+
 ## Installation
 ```sh
 npm install react-audio-voice-recorder
@@ -21,7 +28,7 @@ yarn add react-audio-voice-recorder
 
 ## Usage
 
-### **AudioRecorder** Component ([Usage](https://stackblitz.com/edit/react-ts-cc5l47?file=App.tsx))
+### **AudioRecorder** Component ([See it in action](https://stackblitz.com/edit/react-ts-cc5l47?file=App.tsx))
 
 You can use an out-of-the-box component that takes `onRecordingComplete` method as a prop and calls it when you save the recording
 
@@ -115,7 +122,7 @@ The hook returns the following:
 ### Combine the **`useAudioRecorder`** hook and the **`AudioRecorder`** component
 This is for scenarios where you would wish to control the `AudioRecorder` component from outside the component. You can call the `useAudioRecorder` and pass the object it returns to the **`recorderControls`** of the `AudioRecorder`. This would enable you to control the `AudioRecorder` component from outside the component as well
 
-#### Sample usage ([Working example](https://stackblitz.com/edit/react-ts-ryj6jz?file=App.tsx))
+#### Sample usage ([See it in action](https://stackblitz.com/edit/react-ts-ryj6jz?file=App.tsx))
 
 ```js
 import { AudioRecorder, useAudioRecorder } from 'react-audio-voice-recorder';
