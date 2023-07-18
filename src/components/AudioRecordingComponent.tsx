@@ -36,6 +36,7 @@ const AudioRecorder: (props: Props) => ReactElement = ({
   downloadOnSavePress = false,
   downloadFileExtension = "webm",
   showVisualizer = false,
+  mediaRecorderOptions,
   classes,
 }: Props) => {
   const {
@@ -50,7 +51,11 @@ const AudioRecorder: (props: Props) => ReactElement = ({
   } =
     recorderControls ??
     // eslint-disable-next-line react-hooks/rules-of-hooks
-    useAudioRecorder(audioTrackConstraints, onNotAllowedOrFound);
+    useAudioRecorder(
+      audioTrackConstraints,
+      onNotAllowedOrFound,
+      mediaRecorderOptions
+    );
 
   const [shouldSave, setShouldSave] = useState(false);
 
