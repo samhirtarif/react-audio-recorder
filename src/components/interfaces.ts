@@ -74,6 +74,10 @@ export interface Props {
    **/
   showVisualizer?: boolean;
   /**
+   * The options passed to the HTML MediaRecorder API.
+   **/
+  mediaRecorderOptions?: MediaRecorderOptions;
+  /**
    * Custom classes to changes styles.
    **/
   classes?: StyleProps;
