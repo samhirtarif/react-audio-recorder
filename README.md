@@ -128,13 +128,19 @@ This is for scenarios where you would wish to control the `AudioRecorder` compon
 import { AudioRecorder, useAudioRecorder } from 'react-audio-voice-recorder';
 
 const ExampleComponent = () => {
+   const [audioElement, setAudioElement] =
+    useState<
+      ReactElement<
+        { src: string; controls: boolean },
+        string | JSXElementConstructor<any>
+      >
+    >();
+
   const recorderControls = useAudioRecorder()
   const addAudioElement = (blob) => {
     const url = URL.createObjectURL(blob);
-    const audio = document.createElement("audio");
-    audio.src = url;
-    audio.controls = true;
-    document.body.appendChild(audio);
+    const Audio = React.createElement("audio", { src: url, controls: true });
+    setAudioElement(Audio);
   };
 
   return (
@@ -145,6 +151,7 @@ const ExampleComponent = () => {
       />
       <button onClick={recorderControls.stopRecording}>Stop recording</button>
     </div>
+    {audioElement}
   )
 }
 ```
