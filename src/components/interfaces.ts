@@ -81,4 +81,10 @@ export interface Props {
    * Custom classes to changes styles.
    **/
   classes?: StyleProps;
+
+  /**
+   * If set to `false`, passing recorderControls will not automatically
+   * call `onRecordingComplete` when discard is pressed. Defaults to `true`
+   */
+  overrideSave?: boolean;
 }

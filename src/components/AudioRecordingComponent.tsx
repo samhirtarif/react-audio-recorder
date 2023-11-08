@@ -38,6 +38,7 @@ const AudioRecorder: (props: Props) => ReactElement = ({
   showVisualizer = false,
   mediaRecorderOptions,
   classes,
+  overrideSave = true,
 }: Props) => {
   const {
     startRecording,
@@ -115,8 +116,9 @@ const AudioRecorder: (props: Props) => ReactElement = ({
   };
 
   useEffect(() => {
+    const recordingControlsOverride = recorderControls && overrideSave;
     if (
-      (shouldSave || recorderControls) &&
+      (shouldSave || recordingControlsOverride) &&
       recordingBlob != null &&
       onRecordingComplete != null
     ) {
