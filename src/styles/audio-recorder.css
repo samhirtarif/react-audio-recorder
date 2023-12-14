@@ -20,11 +20,11 @@
     height: 16px;
     color: black;
     padding: 12px;
+}
 
-    &.recording {
-        padding: 0 12px;
-        height: 28px;
-    }
+.audio-recorder-mic.recording {
+    padding: 0 12px;
+    height: 28px;
 }
 
 .audio-recorder .audio-recorder-mic {
