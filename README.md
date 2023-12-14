@@ -69,6 +69,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
 | **`downloadFileExtension`**  | The file extension to be used for the downloaded file. Allowed values are `webm`, `mp3` and `wav`. In order to use `mp3` or `wav` please ensure that your website is [cross-origin isolated](https://web.dev/cross-origin-isolation-guide/). [Further reading](https://web.dev/coop-coep/) | `webm` | Yes |
 | **`showVisualizer`**  | Displays a waveform visualization for the audio when set to `true` | `false` | Yes |
 | **`classes`** | This allows class names to be passed to modify the styles for the entire component or specific portions of it | N/A | Yes |
+| **`overrideSave`** | This allows to override the default behavior of calling `onRecordingComplete` when discard is pressed and `recorderControls` are passed | `false` | Yes |
 
 **NOTE: In order for `mp3` and `wav` downloading to work properly, your website needs to be [cross-origin isolated](https://web.dev/cross-origin-isolation-guide/). This is necessary because this package uses [FFmpeg](https://www.npmjs.com/package/@ffmpeg/ffmpeg) which internally uses `SharedArrayBuffer` that requires cross-origin isolation**
 
