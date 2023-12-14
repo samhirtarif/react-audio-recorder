@@ -1,13 +1,13 @@
 {
-  "name": "react-audio-voice-recorder",
+  "name": "@joinowners/react-audio-voice-recorder",
   "private": false,
-  "version": "2.2.0",
+  "version": "2.3.0",
   "type": "module",
   "license": "MIT",
   "author": "Samhir Tarif",
   "repository": {
     "type": "git",
-    "url": "https://github.com/samhirtarif/react-audio-recorder.git"
+    "url": "git+https://github.com/joinowners/react-audio-recorder.git"
   },
   "keywords": [
     "react",
@@ -98,5 +98,14 @@
   "dependencies": {
     "@ffmpeg/ffmpeg": "^0.11.6",
     "react-audio-visualize": "^1.1.3"
+  },
+  "description": "An audio recording helper for React. Provides a component and a hook to help with audio recording.",
+  "bugs": {
+    "url": "https://github.com/samhirtarif/react-audio-recorder/issues"
+  },
+  "homepage": "https://github.com/samhirtarif/react-audio-recorder#readme",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
   }
 }

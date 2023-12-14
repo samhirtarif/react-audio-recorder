@@ -1,9 +1,21 @@
-<?xml version="1.0" encoding="iso-8859-1"?>
-<!-- Generator: Adobe Illustrator 19.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
-<svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-	 viewBox="0 0 46.734 46.734" style="enable-background:new 0 0 46.734 46.734;" xml:space="preserve">
-<g>
-	<path d="M41.346,0H5.388C2.417,0,0,2.417,0,5.388v35.958c0,2.971,2.417,5.388,5.388,5.388h35.958c2.971,0,5.388-2.417,5.388-5.388
-		V5.388C46.733,2.417,44.316,0,41.346,0z"/>
-</g>
+<svg width="21" height="21" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+	<g clip-path="url(#clip0_3357_4566)">
+		<path d="M1.5 5.25H19.5" stroke="#000" stroke-width="1.71429" stroke-linecap="round"
+			stroke-linejoin="round" />
+		<path
+			d="M3.75 5.25H17.25V18.75C17.25 19.1478 17.0919 19.5294 16.8107 19.8107C16.5294 20.0919 16.1478 20.25 15.75 20.25H5.25C4.85217 20.25 4.47064 20.0919 4.18933 19.8107C3.90804 19.5294 3.75 19.1478 3.75 18.75V5.25Z"
+			stroke="#000" stroke-width="1.71429" stroke-linecap="round" stroke-linejoin="round" />
+		<path
+			d="M6.75 5.25V4.5C6.75 3.50544 7.14508 2.5516 7.84834 1.84834C8.5516 1.14509 9.50544 0.75 10.5 0.75C11.4946 0.75 12.4484 1.14509 13.1517 1.84834C13.8549 2.5516 14.25 3.50544 14.25 4.5V5.25"
+			stroke="#000" stroke-width="1.71429" stroke-linecap="round" stroke-linejoin="round" />
+		<path d="M8.25 9.75195V15.7543" stroke="#000" stroke-width="1.71429" stroke-linecap="round"
+			stroke-linejoin="round" />
+		<path d="M12.75 9.75195V15.7543" stroke="#000" stroke-width="1.71429" stroke-linecap="round"
+			stroke-linejoin="round" />
+	</g>
+	<defs>
+		<clipPath id="clip0_3357_4566">
+			<rect width="21" height="21" fill="white" />
+		</clipPath>
+	</defs>
 </svg>
