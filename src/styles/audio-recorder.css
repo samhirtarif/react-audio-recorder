@@ -14,16 +14,21 @@
     -webkit-tap-highlight-color: transparent;
 }
 
-.audio-recorder-mic {
+.audio-recorder button {
     box-sizing: content-box;
-    cursor: pointer;
-    height: 16px;
+    background: transparent;
+    border: none;
     color: black;
+    cursor: pointer;
     padding: 12px;
 }
 
+.audio-recorder img {
+    aspect-ratio: 1/1;
+}
+
 .audio-recorder .audio-recorder-mic {
-    border-radius: 20px;
+    border-radius: 50%;
 }
 
 .audio-recorder.recording .audio-recorder-mic {
