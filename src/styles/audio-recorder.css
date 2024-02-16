@@ -20,11 +20,13 @@
     border: none;
     color: black;
     cursor: pointer;
+    margin: 0;
     padding: 12px;
 }
 
 .audio-recorder img {
     aspect-ratio: 1/1;
+    display: block;
 }
 
 .audio-recorder .audio-recorder-mic {
@@ -62,20 +64,11 @@
     margin-right: 5px;
 }
 
-.audio-recorder-options {
-    box-sizing: content-box;
-    height: 16px;
-    cursor: pointer;
-    padding: 12px 6px 12px 12px;
-}
-.audio-recorder-options ~ .audio-recorder-options {
-    padding: 12px 12px 12px 6px;
-    border-radius: 0 5px 5px 0;
-}
-
 .recording {
     border-radius: 12px;
-    width: 300px;
+    padding-inline: 10px;
+    width: 320px;
+    width: min-content;
     transition: all 0.2s ease-out;
 }
 
