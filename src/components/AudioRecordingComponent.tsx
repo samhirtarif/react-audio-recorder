@@ -145,24 +145,26 @@ const AudioRecorder: (props: Props) => ReactElement = ({
         <img
           src={isRecording ? saveSVG : micSVG}
           alt={isRecording ? "Save recording" : "Start recording"}
-          width={"16"}
-          height={"16"}
-          />
+          width={16}
+          height={16}
+        />
       </button>
       <span
+        hidden={!isRecording}
+        aria-hidden={!isRecording ? "true" : "false"}
         className={`audio-recorder-timer ${
-          !isRecording ? "display-none" : ""
-        } ${classes?.AudioRecorderTimerClass ?? ""}`}
-        data-testid={"ar_timer"}
+          classes?.AudioRecorderTimerClass ?? ""
+        }`}
+        data-testid="ar_timer"
       >
         {Math.floor(recordingTime / 60)}:
         {String(recordingTime % 60).padStart(2, "0")}
       </span>
       {showVisualizer ? (
         <span
-          className={`audio-recorder-visualizer ${
-            !isRecording ? "display-none" : ""
-          }`}
+          hidden={!isRecording}
+          aria-hidden={!isRecording ? "true" : "false"}
+          className="audio-recorder-visualizer"
         >
           {mediaRecorder && (
             <Suspense fallback={<></>}>
@@ -182,18 +184,23 @@ const AudioRecorder: (props: Props) => ReactElement = ({
         </span>
       ) : (
         <span
+          hidden={!isRecording}
+          aria-hidden={!isRecording ? "true" : "false"}
           className={`audio-recorder-status ${
-            !isRecording ? "display-none" : ""
-          } ${classes?.AudioRecorderStatusClass ?? ""}`}
+            classes?.AudioRecorderStatusClass ?? ""
+          }`}
         >
           <span className="audio-recorder-status-dot"></span>
           Recording
         </span>
       )}
       <button
+        hidden={!isRecording}
+        aria-hidden={!isRecording ? "true" : "false"}
+        tabIndex={!isRecording ? -1 : 0}
         className={`audio-recorder-options ${
-          !isRecording ? "display-none" : ""
-        } ${classes?.AudioRecorderPauseResumeClass ?? ""}`}
+          classes?.AudioRecorderPauseResumeClass ?? ""
+        }`}
         onClick={togglePauseResume}
         title={isPaused ? "Resume recording" : "Pause recording"}
         data-testid={"ar_pause"}
@@ -201,24 +208,22 @@ const AudioRecorder: (props: Props) => ReactElement = ({
         <img
           src={isPaused ? resumeSVG : pauseSVG}
           alt={isPaused ? "Resume recording" : "Pause recording"}
-          width={"16"}
-          height={"16"}
+          width={16}
+          height={16}
         />
       </button>
       <button
+        hidden={!isRecording}
+        aria-hidden={!isRecording ? "true" : "false"}
+        tabIndex={!isRecording ? -1 : 0}
         className={`audio-recorder-options ${
-          !isRecording ? "display-none" : ""
-        } ${classes?.AudioRecorderDiscardClass ?? ""}`}
+          classes?.AudioRecorderDiscardClass ?? ""
+        }`}
         onClick={() => stopAudioRecorder(false)}
-        title={"Discard Recording"}
-        data-testid={"ar_cancel"}
+        title="Discard Recording"
+        data-testid="ar_cancel"
       >
-        <img
-          src={discardSVG}
-          alt={"Discard Recording"}
-          width={"16"}
-          height={"16"}
-        />
+        <img src={discardSVG} width={16} height={16} alt="Discard Recording" />
       </button>
     </div>
   );

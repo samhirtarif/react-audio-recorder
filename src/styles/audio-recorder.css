@@ -72,7 +72,7 @@
     transition: all 0.2s ease-out;
 }
 
-.display-none {
+.audio-recorder [hidden] {
     display: none;
 }
 
