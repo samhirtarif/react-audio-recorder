@@ -134,20 +134,26 @@ const AudioRecorder: (props: Props) => ReactElement = ({
       }`}
       data-testid="audio_recorder"
     >
-      <img
-        src={isRecording ? saveSVG : micSVG}
+      <button
         className={`audio-recorder-mic ${
           classes?.AudioRecorderStartSaveClass ?? ""
         }`}
-        onClick={isRecording ? () => stopAudioRecorder() : startRecording}
         data-testid="ar_mic"
         title={isRecording ? "Save recording" : "Start recording"}
-      />
+        onClick={isRecording ? () => stopAudioRecorder() : startRecording}
+      >
+        <img
+          src={isRecording ? saveSVG : micSVG}
+          alt={isRecording ? "Save recording" : "Start recording"}
+          width={"16"}
+          height={"16"}
+          />
+      </button>
       <span
         className={`audio-recorder-timer ${
           !isRecording ? "display-none" : ""
         } ${classes?.AudioRecorderTimerClass ?? ""}`}
-        data-testid="ar_timer"
+        data-testid={"ar_timer"}
       >
         {Math.floor(recordingTime / 60)}:
         {String(recordingTime % 60).padStart(2, "0")}
@@ -184,24 +190,36 @@ const AudioRecorder: (props: Props) => ReactElement = ({
           Recording
         </span>
       )}
-      <img
-        src={isPaused ? resumeSVG : pauseSVG}
+      <button
         className={`audio-recorder-options ${
           !isRecording ? "display-none" : ""
         } ${classes?.AudioRecorderPauseResumeClass ?? ""}`}
         onClick={togglePauseResume}
         title={isPaused ? "Resume recording" : "Pause recording"}
-        data-testid="ar_pause"
-      />
-      <img
-        src={discardSVG}
+        data-testid={"ar_pause"}
+      >
+        <img
+          src={isPaused ? resumeSVG : pauseSVG}
+          alt={isPaused ? "Resume recording" : "Pause recording"}
+          width={"16"}
+          height={"16"}
+        />
+      </button>
+      <button
         className={`audio-recorder-options ${
           !isRecording ? "display-none" : ""
         } ${classes?.AudioRecorderDiscardClass ?? ""}`}
         onClick={() => stopAudioRecorder(false)}
-        title="Discard Recording"
-        data-testid="ar_cancel"
-      />
+        title={"Discard Recording"}
+        data-testid={"ar_cancel"}
+      >
+        <img
+          src={discardSVG}
+          alt={"Discard Recording"}
+          width={"16"}
+          height={"16"}
+        />
+      </button>
     </div>
   );
 };
