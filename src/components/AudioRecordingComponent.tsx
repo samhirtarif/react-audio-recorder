@@ -150,6 +150,7 @@ const AudioRecorder: (props: Props) => ReactElement = ({
         />
       </button>
       <span
+        role="timer"
         hidden={!isRecording}
         aria-hidden={!isRecording ? "true" : "false"}
         className={`audio-recorder-timer ${
