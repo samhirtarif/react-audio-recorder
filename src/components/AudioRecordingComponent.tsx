@@ -139,6 +139,7 @@ const AudioRecorder: (props: Props) => ReactElement = ({
           classes?.AudioRecorderStartSaveClass ?? ""
         }`}
         data-testid="ar_mic"
+        aria-label={isRecording ? "Save recording" : "Start recording"}
         title={isRecording ? "Save recording" : "Start recording"}
         onClick={isRecording ? () => stopAudioRecorder() : startRecording}
       >
@@ -203,6 +204,8 @@ const AudioRecorder: (props: Props) => ReactElement = ({
           classes?.AudioRecorderPauseResumeClass ?? ""
         }`}
         onClick={togglePauseResume}
+        aria-label={isPaused ? "Resume recording" : "Pause recording"}
+        aria-pressed={isPaused}
         title={isPaused ? "Resume recording" : "Pause recording"}
         data-testid={"ar_pause"}
       >
@@ -221,6 +224,7 @@ const AudioRecorder: (props: Props) => ReactElement = ({
           classes?.AudioRecorderDiscardClass ?? ""
         }`}
         onClick={() => stopAudioRecorder(false)}
+        aria-label="Discard Recording"
         title="Discard Recording"
         data-testid="ar_cancel"
       >
