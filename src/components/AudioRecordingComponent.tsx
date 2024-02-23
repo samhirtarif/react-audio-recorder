@@ -6,7 +6,7 @@ import micSVG from "../icons/mic.svg";
 import pauseSVG from "../icons/pause.svg";
 import resumeSVG from "../icons/play.svg";
 import saveSVG from "../icons/save.svg";
-import discardSVG from "../icons/stop.svg";
+import discardSVG from "../icons/trash.svg";
 import "../styles/audio-recorder.css";
 
 const LiveAudioVisualizer = React.lazy(async () => {
@@ -64,6 +64,14 @@ const AudioRecorder: (props: Props) => ReactElement = ({
   ) => {
     setShouldSave(save);
     stopRecording();
+  };
+
+  const startAudioRecorder: React.MouseEventHandler<HTMLButtonElement> = (
+    event
+  ) => {
+    startRecording();
+    const target = event.target as HTMLElement;
+    target?.focus();
   };
 
   const convertToDownloadFileExtension = async (
@@ -141,7 +149,7 @@ const AudioRecorder: (props: Props) => ReactElement = ({
         data-testid="ar_mic"
         aria-label={isRecording ? "Save recording" : "Start recording"}
         title={isRecording ? "Save recording" : "Start recording"}
-        onClick={isRecording ? () => stopAudioRecorder() : startRecording}
+        onClick={isRecording ? () => stopAudioRecorder() : startAudioRecorder}
       >
         <img
           src={isRecording ? saveSVG : micSVG}
@@ -205,7 +213,6 @@ const AudioRecorder: (props: Props) => ReactElement = ({
         }`}
         onClick={togglePauseResume}
         aria-label={isPaused ? "Resume recording" : "Pause recording"}
-        aria-pressed={isPaused}
         title={isPaused ? "Resume recording" : "Pause recording"}
         data-testid={"ar_pause"}
       >
