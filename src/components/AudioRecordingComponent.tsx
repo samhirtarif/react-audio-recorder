@@ -6,7 +6,7 @@ import micSVG from "../icons/mic.svg";
 import pauseSVG from "../icons/pause.svg";
 import resumeSVG from "../icons/play.svg";
 import saveSVG from "../icons/save.svg";
-import discardSVG from "../icons/stop.svg";
+import discardSVG from "../icons/trash.svg";
 import "../styles/audio-recorder.css";
 
 const LiveAudioVisualizer = React.lazy(async () => {
@@ -64,6 +64,14 @@ const AudioRecorder: (props: Props) => ReactElement = ({
   ) => {
     setShouldSave(save);
     stopRecording();
+  };
+
+  const startAudioRecorder: React.MouseEventHandler<HTMLButtonElement> = (
+    event
+  ) => {
+    startRecording();
+    const target = event.target as HTMLElement;
+    target?.focus();
   };
 
   const convertToDownloadFileExtension = async (
@@ -134,19 +142,30 @@ const AudioRecorder: (props: Props) => ReactElement = ({
       }`}
       data-testid="audio_recorder"
     >
-      <img
-        src={isRecording ? saveSVG : micSVG}
+      <button
         className={`audio-recorder-mic ${
           classes?.AudioRecorderStartSaveClass ?? ""
         }`}
-        onClick={isRecording ? () => stopAudioRecorder() : startRecording}
         data-testid="ar_mic"
+        aria-label={isRecording ? "Save recording" : "Start recording"}
         title={isRecording ? "Save recording" : "Start recording"}
-      />
+        onClick={isRecording ? () => stopAudioRecorder() : startAudioRecorder}
+      >
+        <img
+          src={isRecording ? saveSVG : micSVG}
+          alt={isRecording ? "Save recording" : "Start recording"}
+          width={16}
+          height={16}
+        />
+      </button>
       <span
+        role="timer"
+        aria-atomic="true"
+        hidden={!isRecording}
+        aria-hidden={!isRecording ? "true" : "false"}
         className={`audio-recorder-timer ${
-          !isRecording ? "display-none" : ""
-        } ${classes?.AudioRecorderTimerClass ?? ""}`}
+          classes?.AudioRecorderTimerClass ?? ""
+        }`}
         data-testid="ar_timer"
       >
         {Math.floor(recordingTime / 60)}:
@@ -154,9 +173,9 @@ const AudioRecorder: (props: Props) => ReactElement = ({
       </span>
       {showVisualizer ? (
         <span
-          className={`audio-recorder-visualizer ${
-            !isRecording ? "display-none" : ""
-          }`}
+          hidden={!isRecording}
+          aria-hidden={!isRecording ? "true" : "false"}
+          className="audio-recorder-visualizer"
         >
           {mediaRecorder && (
             <Suspense fallback={<></>}>
@@ -176,32 +195,49 @@ const AudioRecorder: (props: Props) => ReactElement = ({
         </span>
       ) : (
         <span
+          hidden={!isRecording}
+          aria-hidden={!isRecording ? "true" : "false"}
           className={`audio-recorder-status ${
-            !isRecording ? "display-none" : ""
-          } ${classes?.AudioRecorderStatusClass ?? ""}`}
+            classes?.AudioRecorderStatusClass ?? ""
+          }`}
         >
           <span className="audio-recorder-status-dot"></span>
           Recording
         </span>
       )}
-      <img
-        src={isPaused ? resumeSVG : pauseSVG}
+      <button
+        hidden={!isRecording}
+        aria-hidden={!isRecording ? "true" : "false"}
+        tabIndex={!isRecording ? -1 : 0}
         className={`audio-recorder-options ${
-          !isRecording ? "display-none" : ""
-        } ${classes?.AudioRecorderPauseResumeClass ?? ""}`}
+          classes?.AudioRecorderPauseResumeClass ?? ""
+        }`}
         onClick={togglePauseResume}
+        aria-label={isPaused ? "Resume recording" : "Pause recording"}
         title={isPaused ? "Resume recording" : "Pause recording"}
-        data-testid="ar_pause"
-      />
-      <img
-        src={discardSVG}
+        data-testid={"ar_pause"}
+      >
+        <img
+          src={isPaused ? resumeSVG : pauseSVG}
+          alt={isPaused ? "Resume recording" : "Pause recording"}
+          width={16}
+          height={16}
+        />
+      </button>
+      <button
+        hidden={!isRecording}
+        aria-hidden={!isRecording ? "true" : "false"}
+        tabIndex={!isRecording ? -1 : 0}
         className={`audio-recorder-options ${
-          !isRecording ? "display-none" : ""
-        } ${classes?.AudioRecorderDiscardClass ?? ""}`}
+          classes?.AudioRecorderDiscardClass ?? ""
+        }`}
         onClick={() => stopAudioRecorder(false)}
+        aria-label="Discard Recording"
         title="Discard Recording"
         data-testid="ar_cancel"
-      />
+      >
+        <img src={discardSVG} width={16} height={16} alt="Discard Recording" />
+      </button>
     </div>
   );
 };
